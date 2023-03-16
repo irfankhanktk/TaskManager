@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
-import { mvs } from '../../config/metrices';
-import { colors } from '../../config/colors';
+import {StyleSheet} from 'react-native';
+import {mvs} from '../../config/metrices';
+import {colors} from '../../config/colors';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingVertical: mvs(10),
     paddingHorizontal: mvs(20),
-    paddingBottom: mvs(100)
+    paddingBottom: mvs(100),
+    marginTop: mvs(10),
   },
   columnWrapperStyle: {
     justifyContent: 'space-between',
@@ -27,11 +28,10 @@ const styles = StyleSheet.create({
   servicesHeading: {
     marginHorizontal: mvs(20),
   },
-  bgImg:{
+  bgImg: {
     height: mvs(200),
     paddingHorizontal: mvs(25),
     paddingVertical: mvs(30),
-  }
-
+  },
 });
 export default styles;

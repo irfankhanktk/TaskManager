@@ -1,16 +1,19 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Regular from 'typography/regular-text';
-import { colors } from '../../../config/colors';
-import { mvs } from '../../../config/metrices';
-
-const DescriptionCard = ({ description, style, onPress }) => {
+import {colors} from '../../../config/colors';
+import {mvs} from '../../../config/metrices';
+import LottieView from 'lottie-react-native';
+const DescriptionCard = ({description, style, onPress}) => {
   return (
     <View style={[styles.container, style]}>
       <Regular
-        style={{ lineHeight: mvs(16) }}
-        numberOfLines={3} color={colors.white}
-        fontSize={mvs(12)} label={description || 'Short description will be here'} />
+        style={{lineHeight: mvs(16)}}
+        numberOfLines={3}
+        color={colors.white}
+        fontSize={mvs(12)}
+        label={description || 'Short description will be here'}
+      />
       <View style={styles.dotContainer}>
         <View style={styles.dot} />
       </View>
@@ -26,7 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: mvs(15),
     paddingHorizontal: mvs(20),
     paddingTop: mvs(20),
-    paddingBottom: mvs(10)
+    paddingBottom: mvs(10),
   },
   dotContainer: {
     position: 'absolute',
@@ -37,12 +40,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.white,
     height: mvs(20),
-    width: mvs(20)
+    width: mvs(20),
   },
   dot: {
     height: mvs(9),
     width: mvs(9),
     borderRadius: mvs(4.5),
-    backgroundColor: colors.red
-  }
+    backgroundColor: colors.red,
+  },
 });

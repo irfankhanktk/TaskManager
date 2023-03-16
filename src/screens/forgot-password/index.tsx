@@ -1,6 +1,7 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {RenewLogo} from 'assets/icons';
+import {RenewLogo, SplashIcon} from 'assets/icons';
 import {auth_bg} from 'assets/images';
+import Header1x2x from 'components/atoms/headers/header-1x-2x';
 import OtpModal from 'components/molecules/modals/otp-modal';
 import OtpModalRenewPassword from 'components/molecules/modals/otp-modal-signup-renewpassword.js';
 import {colors} from 'config/colors';
@@ -70,9 +71,15 @@ const ForgotPassword = (props: props) => {
           height: height,
           width: width,
         }}>
+        <Header1x2x />
+        <SplashIcon
+          width={mvs(140)}
+          height={mvs(120)}
+          style={{alignSelf: 'center', marginTop: mvs(30)}}
+        />
         <KeyboardAvoidScrollview
           contentContainerStyle={styles.contentContainerStyle}>
-          <RenewLogo style={styles.renew} />
+          {/* <RenewLogo style={styles.renew} /> */}
           <Bold label={`${t('forgot_password')}`} style={styles.txt} />
           <PrimaryInput
             keyboardType={'email-address'}

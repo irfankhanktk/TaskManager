@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef} from 'react';
 import {
   I18nManager,
   KeyboardTypeOptions,
@@ -16,17 +16,17 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import PhoneInput from 'react-native-phone-number-input';
 import Regular from 'typography/regular-text';
-import { mvs } from '../../../config/metrices';
-import { colors } from './../../../config/colors';
+import {mvs} from '../../../config/metrices';
+import {colors} from './../../../config/colors';
 import Medium from 'typography/medium-text';
-import { Row } from '../row';
-import { useAppSelector } from 'hooks/use-store';
+import {Row} from '../row';
+import {useAppSelector} from 'hooks/use-store';
 import CartModal from 'components/molecules/modals/cart-modal';
 import DropdownModal from 'components/molecules/modals/dropdown-modal';
-import { t } from 'i18next';
-type Item = { label: string; value: string };
+import {t} from 'i18next';
+type Item = {label: string; value: string};
 type props = {
-  isRequired?: boolean
+  isRequired?: boolean;
   onChangeText: (text: string) => void;
   onPress?: () => void;
   onPressIn?: () => void;
@@ -53,7 +53,7 @@ type props = {
 };
 const PrimaryInput = (props: props) => {
   const [secure, setSecure] = useState(true);
-  const { language } = useAppSelector(s => s.user);
+  const {language} = useAppSelector(s => s.user);
   const {
     onChangeText,
     value,
@@ -68,13 +68,13 @@ const PrimaryInput = (props: props) => {
     keyboardType,
     error,
     editable = true,
-    onBlur = () => { },
-    onPressIn = () => { },
+    onBlur = () => {},
+    onPressIn = () => {},
     isRequired = false,
   } = props;
   return (
     <>
-      <Regular label={label} style={[styles.labelStyle, labelStyle]} >
+      <Regular label={label} style={[styles.labelStyle, labelStyle]}>
         {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
       </Regular>
       <View style={[styles.Container, containerStyle]}>
@@ -91,7 +91,7 @@ const PrimaryInput = (props: props) => {
           style={[
             styles.textInput,
             style,
-            { textAlign: I18nManager.isRTL ? 'right' : 'left' },
+            {textAlign: I18nManager.isRTL ? 'right' : 'left'},
           ]}
         />
         {isPassword && (
@@ -118,7 +118,7 @@ export default React.memo(PrimaryInput);
 export const CommentInput = (props: props) => {
   const {
     onChangeText,
-    onPress = () => { },
+    onPress = () => {},
     value,
     style,
     placeholder = 'Write Message',
@@ -126,7 +126,7 @@ export const CommentInput = (props: props) => {
     isPassword,
     keyboardType,
     error,
-    onBlur = () => { },
+    onBlur = () => {},
   } = props;
   return (
     <>
@@ -157,7 +157,7 @@ export const InputWithIcon = (props: props) => {
   const {
     items = [],
     onChangeText,
-    onBlur = () => { },
+    onBlur = () => {},
     value,
     style,
     containerStyle,
@@ -169,9 +169,11 @@ export const InputWithIcon = (props: props) => {
   } = props;
   return (
     <>
-      {label && <Regular label={label} style={styles.labelStyle}>
-        {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
-      </Regular>}
+      {label && (
+        <Regular label={label} style={styles.labelStyle}>
+          {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
+        </Regular>
+      )}
       <TouchableOpacity
         disabled={editable}
         onPress={() => {
@@ -197,8 +199,8 @@ export const InputWithIcon = (props: props) => {
 export const PrimaryPhoneInput = (props: props) => {
   const phoneRef = useRef<PhoneInput>(null);
   const {
-    onChangeText = t => { },
-    getCallingCode = t => { },
+    onChangeText = t => {},
+    getCallingCode = t => {},
     value,
     style,
     label,
@@ -254,28 +256,46 @@ export const SearchInput = (props: props) => {
     disabledSearch = true,
   } = props;
   return (
+    // <View style={[styles.searchContainer, containerStyle]}>
+    //   <TouchableOpacity
+    //     disabled={disabledSearch}
+    //     style={styles.searchIcon}
+    //     onPress={() => {}}>
+    //     <Feather size={mvs(22)} name={'search'} color={colors.black} />
+    //   </TouchableOpacity>
+    //   <TextInput
+    //     editable={editable}
+    //     onBlur={onBlur}
+    //     keyboardType={keyboardType}
+    //     value={value}
+    //     placeholder={placeholder}
+    //     placeholderTextColor={`${colors.border}`}
+    //     onChangeText={onChangeText}
+    //     style={[styles.searchTextInput, style]}
+    //   />
+    //   <TouchableOpacity
+    //     disabled={disabledSearch}
+    //     style={styles.searchIcon}
+    //     onPress={() => {}}>
+    //     <MaterialIcons size={mvs(22)} name={'cancel'} color={colors.black} />
+    //   </TouchableOpacity>
+    // </View>
     <View style={[styles.searchContainer, containerStyle]}>
-      <TouchableOpacity
-        disabled={disabledSearch}
-        style={styles.searchIcon}
-        onPress={() => { }}>
-        <Feather size={mvs(22)} name={'search'} color={colors.black} />
-      </TouchableOpacity>
       <TextInput
         editable={editable}
         onBlur={onBlur}
         keyboardType={keyboardType}
         value={value}
         placeholder={placeholder}
-        placeholderTextColor={`${colors.border}`}
+        placeholderTextColor={colors.primary}
         onChangeText={onChangeText}
         style={[styles.searchTextInput, style]}
       />
       <TouchableOpacity
         disabled={disabledSearch}
         style={styles.searchIcon}
-        onPress={() => { }}>
-        <MaterialIcons size={mvs(22)} name={'cancel'} color={colors.black} />
+        onPress={() => {}}>
+        <Feather size={mvs(22)} name={'search'} color={colors.white} />
       </TouchableOpacity>
     </View>
   );
@@ -326,7 +346,7 @@ const styles = StyleSheet.create({
     borderRadius: mvs(10),
     overflow: 'hidden',
   },
-  textContainerStyle: { backgroundColor: colors.white },
+  textContainerStyle: {backgroundColor: colors.white},
   textInput: {
     color: colors.black,
     textAlignVertical: 'center',
@@ -366,29 +386,58 @@ const styles = StyleSheet.create({
     height: mvs(15),
     marginHorizontal: mvs(5),
   },
+  // searchContainer: {
+  //   height: mvs(52),
+  //   borderRadius: mvs(5),
+  //   flexDirection: 'row',
+  //   justifyContent: 'space-between',
+  //   paddingHorizontal: mvs(10),
+  //   backgroundColor: colors.white,
+  //   alignItems: 'center',
+  //   ...colors.shadow,
+  // },
   searchContainer: {
     height: mvs(52),
-    borderRadius: mvs(5),
+    borderRadius: mvs(20),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: mvs(10),
+    marginTop: mvs(20),
     backgroundColor: colors.white,
     alignItems: 'center',
     ...colors.shadow,
+    borderWidth: 1,
+    borderColor: colors.primary,
   },
+  // searchIcon: {
+  //   // backgroundColor: colors.primary,
+  //   borderRadius: mvs(20),
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  // },
   searchIcon: {
-    // backgroundColor: colors.primary,
+    backgroundColor: colors.primary,
+    width: mvs(77),
+    height: '100%',
     borderRadius: mvs(20),
     justifyContent: 'center',
     alignItems: 'center',
   },
+  // searchTextInput: {
+  //   color: colors.black,
+  //   textAlignVertical: 'center',
+  //   height: mvs(36),
+  //   fontSize: mvs(14),
+  //   flex: 1,
+  //   paddingHorizontal: mvs(10),
+  //   padding: mvs(0),
+  // },
   searchTextInput: {
-    color: colors.black,
+    color: colors.primary,
     textAlignVertical: 'center',
     height: mvs(36),
     fontSize: mvs(14),
-    flex: 1,
-    paddingHorizontal: mvs(10),
+    width: '75%',
+    paddingHorizontal: mvs(15),
     padding: mvs(0),
   },
   secondaryErrorLabel: {

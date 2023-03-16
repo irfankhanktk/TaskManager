@@ -2,20 +2,25 @@ import messaging from '@react-native-firebase/messaging';
 import {auth_bg} from 'assets/images';
 import {PrimaryButton} from 'components/atoms/buttons';
 import OtpModal from 'components/molecules/modals/otp-modal';
+import {colors} from 'config/colors';
 import {height, mvs, width} from 'config/metrices';
 import {useFormik} from 'formik';
 import {useAppDispatch} from 'hooks/use-store';
 import {navigate} from 'navigation/navigation-ref';
 import React from 'react';
-import {ImageBackground, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, TouchableOpacity, View, Image} from 'react-native';
+import {color} from 'react-native-reanimated';
 import {onLogin} from 'services/api/api-actions';
 import i18n from 'translation';
 import Bold from 'typography/bold-text';
 import Medium from 'typography/medium-text';
 import {signinFormValidation} from 'validations';
 import PrimaryInput from '../../components/atoms/inputs';
+import * as IMG from 'assets/images';
 import {KeyboardAvoidScrollview} from '../../components/atoms/keyboard-avoid-scrollview/index';
 import styles from './styles';
+
+import {SplashIcon} from 'assets/icons';
 const LoginScreen = props => {
   const dispatch = useAppDispatch();
   const {t} = i18n;
@@ -57,9 +62,26 @@ const LoginScreen = props => {
             height: height,
             width: width,
           }}>
+          <SplashIcon
+            width={mvs(140)}
+            height={mvs(120)}
+            style={{alignSelf: 'center', marginTop: mvs(30)}}
+          />
+          {/* <View
+            style={{
+              borderWidth: 1,
+              alignSelf: 'center',
+              backgroundColor: 'red',
+            }}>
+            <Image
+              source={IMG.loginlogo}
+              style={{width: mvs(200), height: mvs(200)}}
+            />
+          </View> */}
+
           <KeyboardAvoidScrollview
             contentContainerStyle={styles.contentContainerStyle}>
-            <Bold label={t('login')} style={styles.txt} />
+            <Bold label={t('Sign In')} style={styles.txt} />
             <PrimaryInput
               keyboardType={'email-address'}
               error={
@@ -93,7 +115,7 @@ const LoginScreen = props => {
               onPress={() => navigate('ForgotPassword')}>
               <Medium
                 label={t('forgot_password')}
-                style={{textDecorationLine: 'underline'}}
+                style={{textDecorationLine: 'underline', color: colors.white}}
               />
             </TouchableOpacity>
             <PrimaryButton
@@ -105,14 +127,14 @@ const LoginScreen = props => {
               onPress={onSubmit}
               title={t('login')}
             />
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={{alignSelf: 'center', marginTop: mvs(20)}}
               onPress={() => navigate('Signup')}>
               <Medium
                 label={t('dont_have_account')}
                 style={{textDecorationLine: 'underline'}}
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <OtpModal
               onClose={() => setOtpModalVisible(false)}
               visible={otpModalVisible}

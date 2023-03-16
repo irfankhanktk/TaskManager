@@ -1,19 +1,20 @@
-import { useIsFocused } from '@react-navigation/native';
-import { appointment_bg } from 'assets/images';
-import { IconButton } from 'components/atoms/buttons';
+import {useIsFocused} from '@react-navigation/native';
+import {appointment_bg} from 'assets/images';
+import {IconButton, PlusButton} from 'components/atoms/buttons';
 import AppHeader from 'components/atoms/headers';
-import { SearchInput } from 'components/atoms/inputs';
-import { Row } from 'components/atoms/row';
+import {SearchInput} from 'components/atoms/inputs';
+import {Row} from 'components/atoms/row';
 import AppointmentCounter from 'components/molecules/appointment-counter';
-import { EmptyList } from 'components/molecules/empty-list';
+import {EmptyList} from 'components/molecules/empty-list';
 import PopularPatientCard from 'components/molecules/popular-patient-card';
-import { colors } from 'config/colors';
-import { mvs } from 'config/metrices';
-import { useAppDispatch, useAppSelector } from 'hooks/use-store';
-import { navigate } from 'navigation/navigation-ref';
+import {colors} from 'config/colors';
+import {mvs, width} from 'config/metrices';
+import {useAppDispatch, useAppSelector} from 'hooks/use-store';
+import {navigate} from 'navigation/navigation-ref';
 import React from 'react';
-import { FlatList } from 'react-native';
-import { ImageBackground, ScrollView, View } from 'react-native';
+import {FlatList, TouchableOpacity, Image} from 'react-native';
+import {ImageBackground, ScrollView, View} from 'react-native';
+import {shadow} from 'react-native-paper';
 import {
   getAllHospitals,
   getHomeData,
@@ -21,13 +22,18 @@ import {
 } from 'services/api/api-actions';
 import i18n from 'translation';
 import Bold from 'typography/bold-text';
+import Medium from 'typography/medium-text';
 import Regular from 'typography/regular-text';
 import styles from './styles';
+import * as IMG from 'assets/images';
+import DashboardCard from 'components/molecules/dashboard-card';
+import * as SVGS from 'assets/icons';
+
 const Home = props => {
-  const { userInfo, unreadNotification, location } = useAppSelector(s => s?.user);
+  const {userInfo, unreadNotification, location} = useAppSelector(s => s?.user);
   const isFocus = useIsFocused();
   const dispatch = useAppDispatch();
-  const { t } = i18n;
+  const {t} = i18n;
   const [homeData, setHomeData] = React.useState({});
   React.useEffect(() => {
     // getDoctorAvailability(2);
@@ -39,12 +45,12 @@ const Home = props => {
           loadNotifications();
           setHomeData(res);
         }
-      } catch (error) { }
+      } catch (error) {}
     })();
   }, [isFocus]);
   const loadNotifications = async () => {
     try {
-      dispatch(getNotifications({ doctor_id: userInfo?.id }));
+      dispatch(getNotifications({doctor_id: userInfo?.id}));
     } catch (error) {
       console.log('error=>', error);
     }
@@ -54,82 +60,81 @@ const Home = props => {
     <View style={styles.container}>
       <AppHeader
         unreadNotification={unreadNotification}
-        title={`\t${userInfo?.name || t('guest')}`}
+        // title={`\t${userInfo?.name || t('guest')}`}
+        title={'Dashboard'}
       />
       {/* <View style={styles.search}>
         <SearchInput value="" />
       </View> */}
       <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.contentContainerStyle}>
-          <ImageBackground source={appointment_bg} style={styles.bgImg}>
-            <Regular
-              label={t('appointments')}
-              style={{ fontSize: mvs(24), color: colors.primary }}
-            />
-          </ImageBackground>
-          <Row
-            style={{
-              ...colors.shadow,
-              borderRadius: mvs(15),
-              backgroundColor: colors.white,
-              paddingVertical: mvs(10),
-              marginVertical: mvs(20),
-            }}>
-            <AppointmentCounter
-              onPress={() => navigate('AppointmentsList', { status: 'total' })}
-              value={homeData?.counterAppointment?.total ?? '-'}
-              label={t('total')}
-            />
-            <AppointmentCounter
-              onPress={() => navigate('AppointmentsList', { status: 'waiting' })}
-              value={homeData?.counterAppointment?.waiting ?? '-'}
-              label={t('waiting')}
-            />
-            <AppointmentCounter
-              onPress={() =>
-                navigate('AppointmentsList', { status: 'confirmed' })
-              }
-              value={homeData?.counterAppointment?.confirmed ?? '-'}
-              label={t('confirmed')}
-            />
-            <AppointmentCounter
-              onPress={() =>
-                navigate('AppointmentsList', { status: 'completed' })
-              }
-              value={homeData?.counterAppointment?.completed ?? '-'}
-              label={t('completed')}
-            />
-          </Row>
-          <Row>
-            <IconButton icon={'user'} title={t('patients')} />
-            <IconButton
-              icon={'wallet'}
-              title={t('payments')}
-              containerStyle={{
-                backgroundColor: colors.green,
-              }}
-            />
-          </Row>
-          <Bold
-            label={t('popular_patients')}
-            style={{
-              fontSize: mvs(20),
-              marginBottom: mvs(10),
-              marginTop: mvs(20),
-            }}
-          />
-          <FlatList
-            horizontal
-            ListEmptyComponent={<EmptyList label={t('no_patients')} />}
-            contentContainerStyle={styles.contentContainerStyle}
-            showsVerticalScrollIndicator={false}
-            data={homeData?.patients}
-            renderItem={({ item, index }) => {
-              return <PopularPatientCard key={index} name={item?.name} />;
-            }}
-            keyExtractor={(item, index) => index?.toString()}
-          />
-        </ScrollView>
+        <FlatList
+          numColumns={2}
+          data={[
+            {
+              title: 'Today Task',
+              icon: false,
+              number: '5',
+              isGif: true,
+            },
+            {
+              title: 'Tomorrow Task',
+              icon: 'Chart',
+              number: '5',
+            },
+            {
+              title: 'Over All Task',
+              icon: false,
+              number: '5',
+              isProgress: true,
+            },
+            {
+              title: 'Upcoming Task',
+              icon: 'lineChart',
+              number: '5',
+            },
+            {
+              title: 'In Progress Task',
+              icon: 'Chart',
+              number: '5',
+            },
+            {
+              title: 'Completed Task',
+              icon: 'lineChart2',
+              number: '5',
+            },
+            {
+              title: 'Over Due Task',
+              icon: false,
+              number: '5',
+              isProgress: true,
+            },
+          ]}
+          contentContainerStyle={styles.contentContainerStyle}
+          renderItem={({item, index}) => {
+            const Icon = SVGS[item.icon];
+            return (
+              <DashboardCard item={item}>
+                {item.icon && (
+                  <Icon
+                    // height={mvs(30)}
+                    // width={mvs(40)}
+                    style={{
+                      alignSelf: 'flex-end',
+                      resizeMode: 'contain',
+                    }}
+                  />
+                )}
+              </DashboardCard>
+            );
+          }}
+          keyExtractor={(item, index) => index.toString()}
+          columnWrapperStyle={{justifyContent: 'space-between'}}
+        />
+
+        <PlusButton
+          containerStyle={{bottom: mvs(100)}}
+          onPress={() => navigate('ReminderTask')}
+        />
       </View>
     </View>
   );

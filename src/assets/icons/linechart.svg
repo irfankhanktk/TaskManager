@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="119" height="30" viewBox="0 0 119 30">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="imageMask" width="119" height="77" transform="translate(0.17 -0.412)" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="chart_2" data-name="chart 2" transform="translate(-0.17 0.412)" clip-path="url(#clip-path)">
+    <path id="chart_2-2" data-name="chart 2" d="M691,909.727c1.939-1.847,6.591-6.853,11.1-5.921,5.431,1.122,8.147,9.714,11.918,2.29,4.389-11.091,7.8-22.777,15.923-22.777,4.144,0,6.586,12.346,9.164,14.566,10.871-.59,2.136,14.747,17.763,12.582,14.124-1.957,5.815-6.52,19.243-13.322,3.127-2.07,6.957-8.881,10.362-8.881,4.865,0,6.481,5.656,8.469,10.3.667,1.56,4.013.651,7.073.057,3.663-.71,6.4,6.058,8.141,5.921" transform="translate(-691 -883.083)" fill="none" stroke="#861a92" stroke-width="3"/>
+  </g>
+</svg>

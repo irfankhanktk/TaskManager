@@ -1,6 +1,6 @@
 import Header1x2x from 'components/atoms/headers/header-1x-2x';
 import {Loader} from 'components/atoms/loader';
-import AppointmentCard from 'components/molecules/appointment-card';
+import AppointmentCard from 'components/molecules/dashboard-card';
 import {EmptyList} from 'components/molecules/empty-list';
 import {colors} from 'config/colors';
 import {mvs, width} from 'config/metrices';

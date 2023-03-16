@@ -12,10 +12,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {colors} from 'config/colors';
 
 import AppointmentDetails from 'screens/appointment-details';
-import AppointmentsList from 'screens/appointments-list';
+import AppointmentsList from 'screens/Tasks-list';
 import UserTab from 'screens/user-tab';
 import Home from 'screens/home-screen';
 import WalletScreen from 'screens/Wallet';
+import TaskList from 'screens/Tasks-list';
+import TaskListDetails from 'screens/Tasks-list-details';
+import UserList from 'screens/user-list-list ';
 
 export const TabBar = props => {
   const _renderIcon = (routeName, selectedTab) => {
@@ -23,17 +26,17 @@ export const TabBar = props => {
 
     switch (routeName) {
       case 'title1':
-        icon = 'home';
+        icon = 'grid';
         break;
 
       case 'title2':
-        icon = 'wallet';
+        icon = 'heart';
         break;
       case 'title3':
-        icon = 'receipt';
+        icon = 'ios-chatbox-ellipses';
         break;
       case 'title4':
-        icon = 'ios-person-sharp';
+        icon = 'person';
         break;
     }
 
@@ -41,7 +44,7 @@ export const TabBar = props => {
       <Ionicons
         name={icon}
         size={25}
-        color={routeName === selectedTab ? colors.primary : 'black'}
+        color={routeName === selectedTab ? colors.white : colors.black}
       />
     );
   };
@@ -67,7 +70,7 @@ export const TabBar = props => {
         strokeColor="#DDDDDD"
         height={55}
         circleWidth={50}
-        bgColor="white"
+        bgColor={colors.primary}
         initialRouteName="title1"
         borderTopLeftRight
         renderCircle={({selectedTab, navigate}) => (
@@ -77,8 +80,8 @@ export const TabBar = props => {
                 flex: 1,
                 justifyContent: 'center',
               }}
-              onPress={() => navigate('WalletScreen')}>
-              <Ionicons name={'wallet'} color="white" size={25} />
+              onPress={() => navigate('ClientList')}>
+              <Ionicons name={'home'} color="white" size={25} />
             </TouchableOpacity>
           </Animated.View>
         )}
@@ -88,19 +91,19 @@ export const TabBar = props => {
           position="LEFT"
           component={() => <Home {...props} />}
         />
-        {/* <CurvedBottomBar.Screen
+        <CurvedBottomBar.Screen
           name="title2"
           position="LEFT"
-          component={() => <WalletScreen {...props} />}
-        /> */}
-        {/* <CurvedBottomBar.Screen
+          component={() => <TaskListDetails {...props} />}
+        />
+        <CurvedBottomBar.Screen
           name="title3"
-          component={() => <AppointmentsList {...props} />}
+          component={() => <TaskList {...props} />}
           position="RIGHT"
-        /> */}
+        />
         <CurvedBottomBar.Screen
           name="title4"
-          component={() => <UserTab {...props} />}
+          component={() => <UserList {...props} />}
           position="RIGHT"
         />
       </CurvedBottomBar.Navigator>
@@ -116,7 +119,10 @@ export const styles = StyleSheet.create({
   button: {
     marginVertical: 5,
   },
-  bottomBar: {},
+  bottomBar: {
+    // borderWidth: 1,
+    // backgroundColor: colors.primary,
+  },
   btnCircle: {
     width: 60,
     height: 60,
