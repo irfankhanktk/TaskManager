@@ -63,9 +63,6 @@ const PendingTaskCard = ({
               backgroundColor: colors.attachmentcolor,
               borderRadius: mvs(5),
               padding: mvs(5),
-              alignSelf: 'flex-end',
-              alignItems: 'flex-end',
-              justifyContent: 'flex-end',
               textAlign: 'center',
             }}
           />

@@ -94,12 +94,12 @@ const Home = props => {
             },
             {
               title: 'In Progress Task',
-              icon: 'Chart',
+              icon: 'lineChart2',
               number: '5',
             },
             {
               title: 'Completed Task',
-              icon: 'lineChart2',
+              icon: 'Chart',
               number: '5',
             },
             {
