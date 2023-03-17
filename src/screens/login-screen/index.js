@@ -119,12 +119,13 @@ const LoginScreen = props => {
               />
             </TouchableOpacity>
             <PrimaryButtonLogin
-              disabled={
-                Object.keys(errors).length > 0 ||
-                Object.keys(touched).length === 0
-              }
+              // disabled={
+              //   Object.keys(errors).length > 0 ||
+              //   Object.keys(touched).length === 0
+              // }
               loading={loading}
-              onPress={onSubmit}
+              // onPress={onSubmit}
+              onPress={() => navigate('DrawerNavigation')}
               title={t('login')}
             />
             {/* <TouchableOpacity
