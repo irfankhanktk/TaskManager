@@ -30,6 +30,7 @@ import DashboardCard from 'components/molecules/dashboard-card';
 import * as SVGS from 'assets/icons';
 
 const Home = props => {
+  const {navigation} = props;
   const {userInfo, unreadNotification, location} = useAppSelector(s => s?.user);
   const isFocus = useIsFocused();
   const dispatch = useAppDispatch();
@@ -60,7 +61,7 @@ const Home = props => {
     <View style={styles.container}>
       <AppHeader
         unreadNotification={unreadNotification}
-        // title={`\t${userInfo?.name || t('guest')}`}
+        onMenuClick={() => navigation?.toggleDrawer()}
         title={'Dashboard'}
       />
       {/* <View style={styles.search}>

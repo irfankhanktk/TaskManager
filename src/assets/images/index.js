@@ -13,3 +13,12 @@ export {default as drawericon} from './menuTM.png';
 export {default as notificationicon} from './notificationTM.png';
 export {default as charticon} from './tomorrowtaskchartTM.png';
 export {default as taskgif} from './87889-clock-checklist.json';
+/////Drawer Tab Images ////
+
+export {default as today} from './todaytasks.png';
+export {default as tomorrow} from './tomorrowtask.png';
+export {default as overall} from './overalltasks.png';
+export {default as upcoming} from './upcoming.png';
+export {default as inprogress} from './work-in-progress.png';
+export {default as completed} from './completed.png';
+export {default as overdue} from './overdue.png';

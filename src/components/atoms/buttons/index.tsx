@@ -37,7 +37,7 @@ export const PrimaryButton = (props: props) => {
       disabled={disabled || loading}
       style={[
         styles.primaryContainer,
-        {backgroundColor: `${colors.white}${disabled ? '50' : ''}`},
+        {backgroundColor: `${colors.primary}${disabled ? '50' : ''}`},
         containerStyle,
       ]}
       onPress={onPress}>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     borderRadius: mvs(10),
   },
   primaryText: {
-    color: colors.primary,
+    color: colors.white,
   },
   iconText: {
     color: colors.white,

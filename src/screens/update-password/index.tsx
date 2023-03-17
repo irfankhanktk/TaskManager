@@ -3,7 +3,8 @@ import Header1x2x from 'components/atoms/headers/header-1x-2x';
 import {useFormik} from 'formik';
 import {t} from 'i18next';
 import React from 'react';
-import {View} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
+import * as IMG from 'assets/images';
 import {onSignup, onUpdatePassword} from 'services/api/api-actions';
 import {signupFormValidation, updatePasswordValidation} from 'validations';
 import {PrimaryButton} from '../../components/atoms/buttons';
@@ -13,6 +14,10 @@ import {useAppDispatch} from '../../hooks/use-store';
 import RootStackParamList from '../../types/navigation-types/root-stack';
 import Medium from '../../typography/medium-text';
 import styles from './styles';
+import {mvs} from 'config/metrices';
+import {colors} from 'config/colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import {shadow} from 'react-native-paper';
 type props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 
 const UpdatePassword = (props: props) => {
@@ -34,9 +39,48 @@ const UpdatePassword = (props: props) => {
     });
   return (
     <View style={styles.container}>
-      <Header1x2x isSearch={false} title={t('sign_up')} />
+      <Header1x2x isSearch={false} title={t('Update Profile')} />
+
       <KeyboardAvoidScrollview
         contentContainerStyle={styles.contentContainerStyle}>
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <Image
+            source={IMG.cash}
+            resizeMode="contain"
+            style={{
+              width: mvs(140),
+              height: mvs(140),
+              borderWidth: 4,
+              borderRadius: mvs(70),
+              borderColor: colors.primary,
+            }}
+          />
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={{
+              backgroundColor: colors.white,
+              borderRadius: mvs(20),
+              padding: mvs(6),
+              position: 'absolute',
+              right: mvs(110),
+              top: mvs(80),
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+
+              elevation: 5,
+            }}>
+            <Ionicons name="ios-images" color={colors.primary} size={mvs(16)} />
+          </TouchableOpacity>
+        </View>
         <PrimaryInput
           keyboardType={'email-address'}
           error={errors?.email}

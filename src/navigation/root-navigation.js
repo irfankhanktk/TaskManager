@@ -36,8 +36,8 @@ import ClientList from 'screens/Clientss-list';
 import UserList from 'screens/user-list-list ';
 import Deapartments from 'screens/departments';
 import ReminderTask from 'screens/reminder-task';
-
-const Drawer = createDrawerNavigator();
+import DrawerNavigation from './drawer-navigation';
+import UpdateTaskList from 'screens/update-Tasks-list- ';
 const Stack = createNativeStackNavigator();
 // const Drawer = createDrawerNavigator();
 export const RootNavigator = () => {
@@ -53,6 +53,7 @@ export const RootNavigator = () => {
         initialRouteName="Splash"
         screenOptions={horizontalAnimation}>
         <Stack.Screen name="Splash" component={Splash} />
+        <Stack.Screen name="DrawerNavigation" component={DrawerNavigation} />
         <Stack.Group>
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Signup" component={Signup} />
@@ -79,7 +80,7 @@ export const RootNavigator = () => {
         </Stack.Group>
         <Stack.Screen name="AddCard" component={AddCard} />
         <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
-        <Stack.Screen name="BottomTab" component={TabBar} />
+        {/* <Stack.Screen name="BottomTab" component={TabBar} /> */}
         <Stack.Screen name="UpdatePassword" component={UpdatePassword} />
         <Stack.Screen name="LanguageScreen" component={LanguageScreen} />
         <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
@@ -89,40 +90,15 @@ export const RootNavigator = () => {
         <Stack.Screen name="UserList" component={UserList} />
         <Stack.Screen name="Deapartments" component={Deapartments} />
         <Stack.Screen name="ReminderTask" component={ReminderTask} />
+        <Stack.Screen name="UpdateTaskList" component={UpdateTaskList} />
         <Stack.Screen
           name="AppointmentDetails"
           component={AppointmentDetails}
         />
         <Stack.Screen name="Checkout" component={Checkout} />
-        <Stack.Screen name="DrawerTab" component={DrawerTab} />
       </Stack.Navigator>
     </View>
   );
-  function DrawerTab() {
-    return (
-      <Drawer.Navigator
-        drawerStyle={styles.drawerStyle}
-        initialRouteName="Home"
-        screenOptions={{
-          drawerActiveTintColor: 'white',
-          drawerInactiveTintColor: 'yellow',
-        }}
-        drawerContent={props => (
-          <SideDrawer
-            {...props}
-            drawerType="slide"
-            openByDefault={true}
-            hideStatusBar={true}
-
-            //drawerStyle={{borderTopEndRadius: 100}}
-          />
-        )}>
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="LeadsDetails" component={LeadsDetails} />
-        <Drawer.Screen name="LeadsInformation" component={LeadsInformation} />
-      </Drawer.Navigator>
-    );
-  }
 };
 
 const styles = StyleSheet.create({

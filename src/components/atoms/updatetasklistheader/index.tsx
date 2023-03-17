@@ -27,14 +27,12 @@ type props = {
   title?: string;
   unreadNotification?: number;
   back?: boolean;
-  onMenuClick?: () => {};
 };
 const AppHeader = ({
   style,
   title,
   unreadNotification,
   back,
-  onMenuClick,
   ...props
 }: props) => {
   return (
@@ -45,7 +43,10 @@ const AppHeader = ({
             alignItems: 'center',
             justifyContent: 'flex-start',
           }}> */}
-        <TouchableOpacity onPress={onMenuClick}>
+        <TouchableOpacity
+          onPress={() => {
+            navigate?.openDrawer();
+          }}>
           <Image
             source={drawericon}
             style={{height: mvs(30), width: mvs(30), borderRadius: mvs(69 / 2)}}

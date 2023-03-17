@@ -65,6 +65,13 @@ export const updateProfileFormValidation = yup.object().shape({
   price: yup.string().required('req_price'),
   experience: yup.string().required('req_experience'),
 });
+export const updateTaskListFormValidation = yup.object().shape({
+  client: yup.string().required('req_client'),
+  // last_name: yup.string().required('req_first_name'),
+  stage: yup.string().required('req_stage'),
+
+  task_type: yup.string().required('req_task_type'),
+});
 // export const updateProfileFormValidation = yup.object().shape({
 //   first_name: yup.string().required('req_first_name'),
 //   // last_name: yup.string().required('req_first_name'),

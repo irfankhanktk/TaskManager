@@ -49,7 +49,7 @@ const item = {
 const TaskListDetails = props => {
   return (
     <View style={styles.container}>
-      <Header1x2x title={'Tasks List Details'} />
+      <Header1x2x title={'Tasks List View'} />
 
       <ScrollView style={styles.contentContainerStyle}>
         <TaskdetailsCard labelFlex={0.7} item={item}></TaskdetailsCard>

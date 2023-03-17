@@ -29,14 +29,14 @@ const HeaderX = ({
           />
         </TouchableOpacity>
         <Medium fontSize={mvs(18)} label={title} style={[styles.title]} />
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.filter}
           onPress={() => navigation.navigate('UpdateTaskList')}>
           <FontAwesome name="edit" size={mvs(12)} color={colors.white} />
           <Medium label={'Update'} fontSize={mvs(12)} color={colors.white} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
-        {/* <View style={styles.empty} /> */}
+        <View style={styles.empty} />
       </Row>
       {/* {isSearch && <SearchInput onChangeText={onChangeText} placeholder={placeholder} />} */}
     </View>

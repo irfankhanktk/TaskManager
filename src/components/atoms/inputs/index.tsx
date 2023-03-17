@@ -11,6 +11,7 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -48,6 +49,7 @@ type props = {
   disabledSearch?: boolean;
   error?: string;
   id?: any;
+  icon?: string;
   keyboardType?: KeyboardTypeOptions | undefined;
   onBlur?: (e?: NativeSyntheticEvent<TextInputFocusEventData>) => void;
 };
@@ -65,6 +67,7 @@ const PrimaryInput = (props: props) => {
     errorStyle,
     secureTextEntry,
     isPassword,
+    icon,
     keyboardType,
     error,
     editable = true,
@@ -103,6 +106,11 @@ const PrimaryInput = (props: props) => {
               name={secure ? 'eye' : 'eye-off'}
               color={colors.black}
             />
+          </TouchableOpacity>
+        )}
+        {icon && (
+          <TouchableOpacity style={styles.PasswordIcon}>
+            <AntDesign size={25} name={icon} color={colors.primary} />
           </TouchableOpacity>
         )}
       </View>
@@ -182,7 +190,7 @@ export const InputWithIcon = (props: props) => {
         }}
         style={[styles.dropDownContainer, containerStyle]}>
         <Medium label={value} />
-        <Feather size={25} name={'chevron-down'} color={colors.black} />
+        <AntDesign size={25} name={'calendar'} color={colors.primary} />
       </TouchableOpacity>
       <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} />
       <DropdownModal
