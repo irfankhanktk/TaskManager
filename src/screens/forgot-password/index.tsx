@@ -1,7 +1,7 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RenewLogo, SplashIcon} from 'assets/icons';
 import {auth_bg} from 'assets/images';
-import Header1x2x from 'components/atoms/headers/header-1x-2x';
+import Header1x2x from 'components/atoms/forgot-headers /header-1x-2x';
 import OtpModal from 'components/molecules/modals/otp-modal';
 import OtpModalRenewPassword from 'components/molecules/modals/otp-modal-signup-renewpassword.js';
 import {colors} from 'config/colors';
@@ -13,7 +13,10 @@ import {onForgot, onSignup} from 'services/api/api-actions';
 import i18n from 'translation';
 import Bold from 'typography/bold-text';
 import {forgotemailFormValidation, signupFormValidation} from 'validations';
-import {PrimaryButton} from '../../components/atoms/buttons';
+import {
+  PrimaryButton,
+  PrimaryButtonLogin,
+} from '../../components/atoms/buttons';
 import PrimaryInput, {PrimaryPhoneInput} from '../../components/atoms/inputs';
 import {KeyboardAvoidScrollview} from '../../components/atoms/keyboard-avoid-scrollview';
 import {useAppDispatch} from '../../hooks/use-store';
@@ -90,7 +93,7 @@ const ForgotPassword = (props: props) => {
             onBlur={() => setFieldTouched('email', true)}
             value={values.email}
           />
-          <PrimaryButton
+          <PrimaryButtonLogin
             loading={loading}
             // disabled={Object.keys(errors)?.length > 0 || Object.keys(touched)?.length === 0}
             title={t('send_email')}

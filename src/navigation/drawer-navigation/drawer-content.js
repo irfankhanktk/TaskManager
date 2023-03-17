@@ -18,6 +18,7 @@ import Medium from '../../typography/medium-text';
 import Regular from '../../typography/regular-text';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import * as IMG from '../../assets/images';
+import {navigate} from 'navigation/navigation-ref';
 
 const CustomDrawerContent = props => {
   return (
@@ -90,7 +91,8 @@ const CustomDrawerContent = props => {
           style={{
             flex: 1,
             padding: mvs(10),
-          }}>
+          }}
+          onPress={() => navigate('Login')}>
           <Row style={{alignItems: 'center', justifyContent: 'flex-start'}}>
             <MaterialIcons name="logout" color={colors.red} size={mvs(18)} />
             <Bold

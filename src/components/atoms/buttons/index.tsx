@@ -49,6 +49,25 @@ export const PrimaryButton = (props: props) => {
     </TouchableOpacity>
   );
 };
+export const PrimaryButtonLogin = (props: props) => {
+  const {onPress, title, disabled, loading, textStyle, containerStyle} = props;
+  return (
+    <TouchableOpacity
+      disabled={disabled || loading}
+      style={[
+        styles.primaryContainer,
+        {backgroundColor: `${colors.white}${disabled ? '50' : ''}`},
+        containerStyle,
+      ]}
+      onPress={onPress}>
+      {loading ? (
+        <Loader color={colors.primary} />
+      ) : (
+        <Regular style={[styles.primaryTextLogin, textStyle]} label={title} />
+      )}
+    </TouchableOpacity>
+  );
+};
 export const IconButton = (props: props) => {
   const {
     onPress,
@@ -122,6 +141,9 @@ const styles = StyleSheet.create({
   },
   primaryText: {
     color: colors.white,
+  },
+  primaryTextLogin: {
+    color: colors.primary,
   },
   iconText: {
     color: colors.white,

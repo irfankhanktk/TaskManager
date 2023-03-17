@@ -1,5 +1,6 @@
 import React, {useState, useRef} from 'react';
 import {
+  ColorValue,
   I18nManager,
   KeyboardTypeOptions,
   NativeSyntheticEvent,
@@ -50,6 +51,7 @@ type props = {
   error?: string;
   id?: any;
   icon?: string;
+  placeholderTextColor?: ColorValue | undefined;
   keyboardType?: KeyboardTypeOptions | undefined;
   onBlur?: (e?: NativeSyntheticEvent<TextInputFocusEventData>) => void;
 };
@@ -67,6 +69,7 @@ const PrimaryInput = (props: props) => {
     errorStyle,
     secureTextEntry,
     isPassword,
+    placeholderTextColor,
     icon,
     keyboardType,
     error,

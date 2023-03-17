@@ -1,6 +1,6 @@
 import messaging from '@react-native-firebase/messaging';
 import {auth_bg} from 'assets/images';
-import {PrimaryButton} from 'components/atoms/buttons';
+import {PrimaryButton, PrimaryButtonLogin} from 'components/atoms/buttons';
 import OtpModal from 'components/molecules/modals/otp-modal';
 import {colors} from 'config/colors';
 import {height, mvs, width} from 'config/metrices';
@@ -118,7 +118,7 @@ const LoginScreen = props => {
                 style={{textDecorationLine: 'underline', color: colors.white}}
               />
             </TouchableOpacity>
-            <PrimaryButton
+            <PrimaryButtonLogin
               disabled={
                 Object.keys(errors).length > 0 ||
                 Object.keys(touched).length === 0
