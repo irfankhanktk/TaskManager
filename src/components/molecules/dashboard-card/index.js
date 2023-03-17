@@ -36,8 +36,8 @@ const DashboardCard = ({
           <View style={{alignItems: 'flex-end'}}>
             <CircularProgress
               value={60}
-              // valueSuffix={'%'}
-              radius={15}
+              valueSuffix={'%'}
+              radius={20}
               duration={2000}
               progressValueColor={'#000'}
               maxValue={100}

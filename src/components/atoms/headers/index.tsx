@@ -21,7 +21,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {navigate} from 'navigation/navigation-ref';
 import Regular from 'typography/regular-text';
 import {DrawerActions} from '@react-navigation/native';
-
+import {Notificationicon} from 'assets/icons';
+import {Hamburger} from 'assets/icons';
 type props = {
   style?: StyleProp<TextStyle>;
   title?: string;
@@ -46,10 +47,11 @@ const AppHeader = ({
             justifyContent: 'flex-start',
           }}> */}
         <TouchableOpacity onPress={onMenuClick}>
-          <Image
+          {/* <Image
             source={drawericon}
             style={{height: mvs(30), width: mvs(30), borderRadius: mvs(69 / 2)}}
-          />
+          /> */}
+          <Hamburger />
         </TouchableOpacity>
         <Bold fontSize={mvs(20)} label={title} style={[styles.title]} />
         {/* </Row> */}
@@ -60,10 +62,11 @@ const AppHeader = ({
             color={colors.white}
             style={{marginVertical: mvs(12)}}
           /> */}
-          <Image
+          {/* <Image
             source={notificationicon}
             style={{height: mvs(30), width: mvs(30), borderRadius: mvs(69 / 2)}}
-          />
+          /> */}
+          <Notificationicon />
           {unreadNotification ? (
             <View style={styles.notificationbadge}>
               <Regular

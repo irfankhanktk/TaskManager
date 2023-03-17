@@ -100,7 +100,7 @@ const Home = props => {
             },
             {
               title: 'Completed Task',
-              icon: 'Chart',
+              icon: 'Chart2',
               number: '5',
             },
             {

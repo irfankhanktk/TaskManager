@@ -18,6 +18,8 @@ export {default as lineChart2} from './linechart2.svg';
 export {default as clientlistavatar} from './clientlistavatar.svg';
 export {default as Remindericon1} from './remindericon.svg';
 export {default as Remindericon2} from './developmenticon.svg';
+export {default as Notificationicon} from './notificationicon.svg';
+export {default as Hamburger} from './hamburger.svg';
 
 ////Drawer///
 export {default as ammo} from './ammo.svg';
