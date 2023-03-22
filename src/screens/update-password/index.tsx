@@ -19,6 +19,7 @@ import {colors} from 'config/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {shadow} from 'react-native-paper';
 import {Clientlistavatar} from 'assets/icons';
+import {UTILS} from 'utils';
 type props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 
 const UpdatePassword = (props: props) => {
@@ -29,6 +30,7 @@ const UpdatePassword = (props: props) => {
     new_password: '',
     old_password: '',
   };
+  const [image, setImage] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const {values, errors, touched, setFieldValue, setFieldTouched, isValid} =
     useFormik({
@@ -50,7 +52,8 @@ const UpdatePassword = (props: props) => {
             alignItems: 'center',
           }}>
           <Image
-            source={IMG.cash}
+            // source={IMG.cash}
+            source={{uri: image?.uri}}
             resizeMode="contain"
             style={{
               width: mvs(140),
@@ -72,6 +75,14 @@ const UpdatePassword = (props: props) => {
           /> */}
           <TouchableOpacity
             activeOpacity={0.9}
+            onPress={async () => {
+              try {
+                const res = await UTILS._returnImageGallery();
+                setImage(res);
+              } catch (error) {
+                console.log('error', error);
+              }
+            }}
             style={{
               backgroundColor: colors.white,
               borderRadius: mvs(20),

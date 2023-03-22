@@ -107,7 +107,7 @@ const PrimaryInput = (props: props) => {
             <Feather
               size={25}
               name={secure ? 'eye' : 'eye-off'}
-              color={colors.black}
+              color={colors.primary}
             />
           </TouchableOpacity>
         )}

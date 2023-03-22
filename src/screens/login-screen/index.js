@@ -83,6 +83,7 @@ const LoginScreen = props => {
             contentContainerStyle={styles.contentContainerStyle}>
             <Bold label={t('Sign In')} style={styles.txt} />
             <PrimaryInput
+              labelStyle={{color: colors.white}}
               keyboardType={'email-address'}
               error={
                 touched?.email && errors?.email
@@ -97,6 +98,7 @@ const LoginScreen = props => {
               errorStyle={{color: colors.errorcolorlogin}}
             />
             <PrimaryInput
+              labelStyle={{color: colors.white}}
               isPassword
               error={
                 touched?.password && errors?.password
