@@ -11,6 +11,7 @@ import {mvs} from '../../../config/metrices';
 import Regular from '../../../typography/regular-text';
 import {Loader} from '../loader';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Bold from 'typography/bold-text';
 type props = {
   onPress: () => void;
   title: string;
@@ -63,7 +64,7 @@ export const PrimaryButtonLogin = (props: props) => {
       {loading ? (
         <Loader color={colors.primary} />
       ) : (
-        <Regular style={[styles.primaryTextLogin, textStyle]} label={title} />
+        <Bold style={[styles.primaryTextLogin, textStyle]} label={title} />
       )}
     </TouchableOpacity>
   );
@@ -144,6 +145,8 @@ const styles = StyleSheet.create({
   },
   primaryTextLogin: {
     color: colors.primary,
+    fontSize: mvs(18),
+    fontWeight: '700',
   },
   iconText: {
     color: colors.white,

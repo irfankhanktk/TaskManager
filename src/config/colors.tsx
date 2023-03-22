@@ -3,6 +3,7 @@
  */
 export const colors = {
   border: '#E8E8E8',
+  errorcolorlogin: '#f7af07',
   black: '#000000',
   cardborder: '#FABB0E',
   white: '#FFFFFF',

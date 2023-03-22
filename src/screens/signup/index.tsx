@@ -1,20 +1,20 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import Header1x2x from 'components/atoms/headers/header-1x-2x';
-import { useFormik } from 'formik';
+import {useFormik} from 'formik';
 import React from 'react';
-import { Alert, Linking, View } from 'react-native';
+import {Alert, Linking, View} from 'react-native';
 import Geocoder from 'react-native-geocoding';
-import { onSignup } from 'services/api/api-actions';
+import {onSignup} from 'services/api/api-actions';
 import i18n from 'translation';
-import { UTILS } from '../../utils';
-import { signupFormValidation } from 'validations';
-import { PrimaryButton } from '../../components/atoms/buttons';
+import {UTILS} from '../../utils';
+import {signupFormValidation} from 'validations';
+import {PrimaryButton} from '../../components/atoms/buttons';
 import PrimaryInput, {
   InputWithIcon,
   PrimaryPhoneInput,
 } from '../../components/atoms/inputs';
-import { KeyboardAvoidScrollview } from '../../components/atoms/keyboard-avoid-scrollview';
-import { useAppDispatch, useAppSelector } from '../../hooks/use-store';
+import {KeyboardAvoidScrollview} from '../../components/atoms/keyboard-avoid-scrollview';
+import {useAppDispatch, useAppSelector} from '../../hooks/use-store';
 import RootStackParamList from '../../types/navigation-types/root-stack';
 import Medium from '../../typography/medium-text';
 import styles from './styles';
@@ -27,11 +27,11 @@ type props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 const Signup = (props: props) => {
   const [otpModalVisible, setOtpModalVisible] = React.useState(false);
   const [value, setValue] = React.useState('');
-  const { navigation } = props;
-  const { t } = i18n;
-  const { doctor, user } = useAppSelector(s => s);
-  const { location } = user;
-  const { spec_categories } = doctor;
+  const {navigation} = props;
+  const {t} = i18n;
+  const {doctor, user} = useAppSelector(s => s);
+  const {location} = user;
+  const {spec_categories} = doctor;
   console.log('location=>>>', location);
 
   const dispatch = useAppDispatch();
@@ -58,13 +58,13 @@ const Signup = (props: props) => {
     // bio: null,
   };
   const [loading, setLoading] = React.useState(false);
-  const { values, errors, touched, setFieldValue, setFieldTouched, isValid } =
+  const {values, errors, touched, setFieldValue, setFieldTouched, isValid} =
     useFormik({
       initialValues: initialValues,
       validateOnBlur: true,
       validateOnChange: true,
       validationSchema: signupFormValidation,
-      onSubmit: () => { },
+      onSubmit: () => {},
     });
 
   console.log('errors=>', errors);
@@ -287,7 +287,7 @@ const Signup = (props: props) => {
                 console.log('fcmToken=>', fcmToken);
                 dispatch(
                   onSignup(
-                    { ...values, token: fcmToken },
+                    {...values, token: fcmToken},
                     setLoading,
                     props,
                     setOtpModalVisible,

@@ -18,6 +18,7 @@ import {mvs} from 'config/metrices';
 import {colors} from 'config/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {shadow} from 'react-native-paper';
+import {Clientlistavatar} from 'assets/icons';
 type props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 
 const UpdatePassword = (props: props) => {
@@ -59,6 +60,16 @@ const UpdatePassword = (props: props) => {
               borderColor: colors.primary,
             }}
           />
+          {/* <Clientlistavatar
+            width={mvs(140)}
+            height={mvs(140)}
+            style={{
+              alignSelf: 'center',
+              borderWidth: 4,
+              borderRadius: mvs(70),
+              borderColor: colors.primary,
+            }}
+          /> */}
           <TouchableOpacity
             activeOpacity={0.9}
             style={{
@@ -98,7 +109,7 @@ const UpdatePassword = (props: props) => {
               : undefined
           }
           placeholder={'********'}
-          label={'old_password'}
+          label={'Old Password'}
           onChangeText={str => setFieldValue('old_password', str)}
           onBlur={() => setFieldTouched('old_password', true)}
           value={values.old_password}

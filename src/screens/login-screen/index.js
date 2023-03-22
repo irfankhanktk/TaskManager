@@ -94,6 +94,7 @@ const LoginScreen = props => {
               onChangeText={str => setFieldValue('email', str)}
               onBlur={() => setFieldTouched('email', true)}
               value={values.email}
+              errorStyle={{color: colors.errorcolorlogin}}
             />
             <PrimaryInput
               isPassword
@@ -108,7 +109,7 @@ const LoginScreen = props => {
               onBlur={() => setFieldTouched('password', true)}
               value={values.password}
               containerStyle={{marginBottom: 0}}
-              errorStyle={{marginBottom: 0}}
+              errorStyle={{marginBottom: 0, color: colors.errorcolorlogin}}
             />
             <TouchableOpacity
               style={{alignSelf: 'flex-end', marginBottom: mvs(15)}}

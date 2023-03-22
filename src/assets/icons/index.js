@@ -15,7 +15,7 @@ export {default as Chart} from './charticon.svg';
 export {default as Chart2} from './chart2.svg';
 export {default as lineChart} from './linechart.svg';
 export {default as lineChart2} from './linechart2.svg';
-export {default as clientlistavatar} from './clientlistavatar.svg';
+export {default as Clientlistavatar} from './clientlistavatar.svg';
 export {default as Remindericon1} from './remindericon.svg';
 export {default as Remindericon2} from './developmenticon.svg';
 export {default as Notificationicon} from './notificationicon.svg';

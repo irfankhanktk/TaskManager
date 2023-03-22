@@ -37,7 +37,7 @@ const ClientList = props => {
               text2: 'Irfan Khan',
               stageheading: 'Client Email:',
               stagetext: 'alio1234@gmail.com',
-              icon: 'clientlistavatar',
+              icon: 'Clientlistavatar',
             },
             {
               title: 'Compilance',
@@ -45,7 +45,7 @@ const ClientList = props => {
               text2: 'Irfan Khan',
               stageheading: 'Client Email:',
               stagetext: 'alio1234@gmail.com',
-              icon: 'clientlistavatar',
+              icon: 'Clientlistavatar',
             },
             {
               title: 'Compilance',
@@ -53,7 +53,7 @@ const ClientList = props => {
               text2: 'Irfan Khan',
               stageheading: 'Client Email:',
               stagetext: 'alio1234@gmail.com',
-              icon: 'clientlistavatar',
+              icon: 'Clientlistavatar',
             },
           ]}
           contentContainerStyle={styles.contentContainerStyle}

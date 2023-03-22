@@ -36,7 +36,7 @@ const CustomDrawerContent = props => {
           alignSelf: 'center',
           alignItems: 'center',
           justifyContent: 'center',
-          borderBottomWidth: mvs(2),
+          borderBottomWidth: mvs(1),
           borderBottomColor: colors.primary,
         }}>
         <Image
@@ -64,8 +64,8 @@ const CustomDrawerContent = props => {
         contentContainerStyle={{
           flexGrow: 1,
           paddingHorizontal: mvs(20),
-          borderBottomWidth: 2,
-          borderBottomColor: colors.red,
+          // borderBottomWidth: 2,
+          // borderBottomColor: colors.red,
         }}>
         {CATEGORIES.map(x => {
           const icon = IMG[x?.icon];
@@ -90,7 +90,7 @@ const CustomDrawerContent = props => {
         <TouchableOpacity
           style={{
             flex: 1,
-            padding: mvs(10),
+            paddingHorizontal: mvs(20),
           }}
           onPress={() => navigate('Login')}>
           <Row style={{alignItems: 'center', justifyContent: 'flex-start'}}>
