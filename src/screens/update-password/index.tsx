@@ -58,7 +58,7 @@ const UpdatePassword = (props: props) => {
             style={{
               width: mvs(140),
               height: mvs(140),
-              borderWidth: 4,
+              borderWidth: 3,
               borderRadius: mvs(70),
               borderColor: colors.primary,
             }}

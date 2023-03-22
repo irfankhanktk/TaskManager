@@ -85,6 +85,7 @@ const ForgotPassword = (props: props) => {
           {/* <RenewLogo style={styles.renew} /> */}
           <Bold label={`${t('forgot_password')}`} style={styles.txt} />
           <PrimaryInput
+            errorStyle={{color: colors.errorcolorlogin}}
             keyboardType={'email-address'}
             error={touched?.email && errors?.email ? t(errors?.email) : ''}
             label={t('email')}
