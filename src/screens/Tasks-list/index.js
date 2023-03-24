@@ -10,6 +10,7 @@ import React from 'react';
 import {FlatList, View} from 'react-native';
 import {
   getAppointmentsList,
+  getTaskList,
   onChangeAppoinmentStatus,
 } from 'services/api/api-actions';
 import i18n from 'translation';
@@ -22,75 +23,61 @@ import TaskListCard from 'components/molecules/tasklist-card';
 import * as SVGS from 'assets/icons';
 
 const TaskList = props => {
+  const {userInfo} = useAppSelector(s => s?.user);
+  console.log(userInfo);
+  const [loading, setLoading] = React.useState(true);
+  const [taskList, setTaskList] = React.useState([]);
+  const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchList, setSearchList] = React.useState([]);
+
+  React.useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true);
+        const res = await getTaskList();
+        console.log('res of tasklist ==>>>>>', res);
+        setTaskList(res?.tasksList || []);
+      } catch (error) {
+        console.log('error=>', error);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+  React.useEffect(() => {
+    if (searchTerm?.trim()?.length) {
+      const filtered = taskList?.filter(item => {
+        const cond =
+          searchTerm === '' ||
+          item?.s_task_name?.match(new RegExp(searchTerm, 'i'));
+        if (cond) return item;
+      });
+      setSearchList(filtered);
+    }
+  }, [searchTerm]);
   return (
     <View style={styles.container}>
       <Header1x2x title={'Tasks List'} />
-      <SearchInput containerStyle={{marginHorizontal: mvs(20)}} />
+      <SearchInput
+        containerStyle={{marginHorizontal: mvs(20)}}
+        onChangeText={setSearchTerm}
+      />
 
       <View style={styles.container}>
-        <FlatList
-          data={[
-            {
-              title: 'Compilance',
-              text1: 'Client:',
-              text2: 'Irfan Khan',
-              stageheading: 'Stage:',
-              stagetext: 'Not Started',
-              Tasktypehedaer: 'Task Type:',
-              tasktypetext: 'One Time',
-              dateheader: 'Created At:',
-              datetext: 'Thu,Marhc 14/23, 12:35 pm',
-              deadlineheader: 'Deadline:',
-              deadlinetext: 'Fri,Mar 17/23',
-            },
-            {
-              title: 'Compilance',
-              text1: 'Client:',
-              text2: 'Irfan Khan',
-              stageheading: 'Stage:',
-              stagetext: 'Not Started',
-              Tasktypehedaer: 'Task Type:',
-              tasktypetext: 'One Time',
-              dateheader: 'Created At:',
-              datetext: 'Thu,Marhc 14/23, 12:35 pm',
-              deadlineheader: 'Deadline:',
-              deadlinetext: 'Fri,Mar 17/23',
-            },
-            {
-              title: 'Compilance',
-              text1: 'Client:',
-              text2: 'Irfan Khan',
-              stageheading: 'Stage:',
-              stagetext: 'Not Started',
-              Tasktypehedaer: 'Task Type:',
-              tasktypetext: 'One Time',
-              dateheader: 'Created At:',
-              datetext: 'Thu,Marhc 14/23, 12:35 pm',
-              deadlineheader: 'Deadline:',
-              deadlinetext: 'Fri,Mar 17/23',
-            },
-          ]}
-          contentContainerStyle={styles.contentContainerStyle}
-          renderItem={({item, index}) => {
-            const Icon = SVGS[item.icon];
-            return (
-              <TaskListCard item={item}>
-                {item.icon && (
-                  <Icon
-                    // height={mvs(30)}
-                    // width={mvs(40)}
-                    style={{
-                      alignSelf: 'flex-end',
-                      resizeMode: 'contain',
-                    }}
-                  />
-                )}
-              </TaskListCard>
-            );
-          }}
-          keyExtractor={(item, index) => index.toString()}
-          // columnWrapperStyle={{justifyContent: 'space-between'}}
-        />
+        {loading ? (
+          <Loader />
+        ) : (
+          <FlatList
+            ListEmptyComponent={<EmptyList label={'no_result'} />}
+            data={searchTerm?.trim()?.length ? searchList : taskList}
+            contentContainerStyle={styles.contentContainerStyle}
+            renderItem={({item, index}) => {
+              return <TaskListCard item={item}></TaskListCard>;
+            }}
+            keyExtractor={(item, index) => index.toString()}
+            // columnWrapperStyle={{justifyContent: 'space-between'}}
+          />
+        )}
       </View>
     </View>
   );

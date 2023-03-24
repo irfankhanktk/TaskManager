@@ -32,11 +32,22 @@ const ClientListCard = ({
         style={{
           alignSelf: 'flex-start',
         }}>
-        {children}
+        <Image
+          source={IMG.cash}
+          resizeMode="contain"
+          style={{
+            width: mvs(40),
+            height: mvs(40),
+            borderRadius: mvs(20),
+            borderWidth: 1,
+            borderColor: colors.primary,
+            marginTop: mvs(5),
+          }}
+        />
       </View>
       <View style={{flex: 1, marginLeft: mvs(10)}}>
         <Bold
-          label={item.title}
+          label={'Client List'}
           fontSize={mvs(16)}
           style={{
             borderBottomWidth: 1,
@@ -46,21 +57,37 @@ const ClientListCard = ({
         />
         <View style={{paddingVertical: mvs(5)}}>
           <LabelValue
-            label={item.text1}
-            value={item.text2}
+            label={'Name:'}
+            value={item.client_name}
             labelFlex={0.5}
             valueFlex={1}
             labelStyle={{color: colors.lightGray}}
             valueStyle={{color: colors.lightblack}}
           />
           <LabelValue
-            label={item.stageheading}
-            value={item.stagetext}
+            label={'Email:'}
+            value={item.c_email}
             labelFlex={0.5}
             valueFlex={1}
             labelStyle={{color: colors.lightGray}}
             valueStyle={{color: colors.lightblack}}
           />
+          <LabelValue
+            label={'Phone No:'}
+            value={item.c_mobile_no}
+            labelFlex={0.5}
+            valueFlex={1}
+            labelStyle={{color: colors.lightGray}}
+            valueStyle={{color: colors.lightblack}}
+          />
+          {/* <LabelValue
+            label={'CNIC:'}
+            value={item.cnic_no}
+            labelFlex={0.5}
+            valueFlex={1}
+            labelStyle={{color: colors.lightGray}}
+            valueStyle={{color: colors.lightblack}}
+          /> */}
           {/* </Row> */}
         </View>
       </View>

@@ -222,7 +222,10 @@ export const onReadNotifications = async (values: any) => {
 };
 export const updateDoctorAvailabilityDaysTime = async (values: any) => {
   try {
-    const res = await postData(URLS.availability.update_doctor_availability, values);
+    const res = await postData(
+      URLS.availability.update_doctor_availability,
+      values,
+    );
     console.log('res of updateDoctorAvailabilityDaysTime=>', res);
     return res;
   } catch (error: any) {
@@ -234,22 +237,37 @@ export const updateDoctorAvailabilityDaysTime = async (values: any) => {
     throw UTILS.returnError(error);
   }
 };
-export const getDoctorAvailabilityDetails = async (
-  doctor_id: string,
-  hospital_id: string,
-) => {
+export const getUserList = async () => {
   try {
-    const res = await postData(URLS.availability.get_doctor_hospital_details, {
-      doctor_id,
-      hospital_id,
-    });
-    console.log('res of getDoctorAvailabilityDetails=>', res);
+    const res = await getData(URLS.get_users);
+    console.log('res of getusers=>', res);
     return res;
   } catch (error: any) {
-    console.log(
-      'error in getDoctorAvailabilityDetails',
-      UTILS.returnError(error),
-    );
+    console.log('error in getusers', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
+export const getClientList = async () => {
+  try {
+    const res = await getData(URLS.get_clients);
+    console.log('res of getclients=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in getclients', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
+export const getTaskList = async (values: any) => {
+  try {
+    const res = await postData(URLS.get_tasklist, {
+      values,
+    });
+    console.log('res of tasklist=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in tasklist', UTILS.returnError(error));
     Alert.alert('', UTILS.returnError(error));
     throw UTILS.returnError(error);
   }
@@ -427,9 +445,10 @@ export const onLogin = (
       setLoading(true);
       const res = await postData(URLS.auth.login, values);
       console.log('res of onLogin=>', res);
-      UTILS.setItem(STORAGEKEYS.user, JSON.stringify(res?.doctor));
-      dispatch(setUserInfo(res?.doctor));
-      UTILS.resetStack(props, 'BottomTab');
+      UTILS.setItem(STORAGEKEYS.user, JSON.stringify(res?.user_data));
+      UTILS.setItem(STORAGEKEYS.token, res?.access_token);
+      dispatch(setUserInfo(res?.user_data));
+      UTILS.resetStack(props, 'DrawerNavigation');
     } catch (error: any) {
       console.log('error in login', UTILS.returnError(error));
       Alert.alert('', UTILS.returnError(error));
@@ -489,10 +508,22 @@ export const onVerifyOtpRenewpassword = (
 export const onLogoutPress = (props: any) => {
   return async (dispatch: AppDispatch, getState: () => RootState) => {
     try {
+      Alert.alert('Logout', 'Are you sure you want to Logout?', [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'Logout',
+          onPress: async () => {
+            await UTILS.clearStorage();
+            dispatch(setUserInfo(null));
+            UTILS.resetStack(props, 'Splash');
+          },
+        },
+      ]);
       // await logout();
-      await UTILS.clearStorage();
-      dispatch(setUserInfo(null));
-      UTILS.resetStack(props, 'Splash');
     } catch (error: any) {
       console.log('error in onDeleteTask', UTILS.returnError(error));
       Alert.alert('', UTILS.returnError(error));

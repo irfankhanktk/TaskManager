@@ -19,8 +19,12 @@ import Regular from '../../typography/regular-text';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import * as IMG from '../../assets/images';
 import {navigate} from 'navigation/navigation-ref';
+import {useAppDispatch, useAppSelector} from 'hooks/use-store';
+import {onLogoutPress} from 'services/api/api-actions';
 
 const CustomDrawerContent = props => {
+  const {userInfo} = useAppSelector(s => s.user);
+  const dispatch = useAppDispatch();
   return (
     <View
       style={{
@@ -49,12 +53,12 @@ const CustomDrawerContent = props => {
           }}
         />
         <Bold
-          label={'Ali Abdullah'}
+          label={userInfo?.username}
           color={colors.primary}
           fontSize={mvs(16)}
         />
         <Medium
-          label={'ali@gmail.com'}
+          label={userInfo?.email}
           color={colors.primary}
           fontSize={mvs(14)}
         />
@@ -92,7 +96,7 @@ const CustomDrawerContent = props => {
             flex: 1,
             paddingHorizontal: mvs(20),
           }}
-          onPress={() => navigate('Login')}>
+          onPress={() => dispatch(onLogoutPress(props))}>
           <Row style={{alignItems: 'center', justifyContent: 'flex-start'}}>
             <MaterialIcons name="logout" color={colors.red} size={mvs(18)} />
             <Bold

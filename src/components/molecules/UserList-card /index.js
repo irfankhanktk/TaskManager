@@ -17,9 +17,9 @@ import * as IMG from 'assets/images';
 import {Chart} from 'assets/icons';
 import LottieView from 'lottie-react-native';
 import Bold from 'typography/bold-text';
-const ClientListCard = ({
+import LabelValue from '../label-view';
+const UserListCard = ({
   item,
-
   style,
   onPress = () => {},
 
@@ -28,92 +28,73 @@ const ClientListCard = ({
   const {t} = i18n;
   return (
     <TouchableOpacity style={styles.container}>
-      <Bold
-        label={item.title}
-        fontSize={mvs(16)}
+      <View
         style={{
-          borderBottomWidth: 1,
-          borderBottomColor: colors.lightGray,
-          paddingBottom: mvs(5),
-        }}
-      />
-      <View style={{paddingVertical: mvs(5)}}>
-        <Row style={{paddingBottom: mvs(5)}}>
-          <Regular
-            label={'Client Name'}
-            fontSize={mvs(13)}
-            color={colors.lightGray}
-            style={{flex: 0.4}}
-          />
-          <Regular
-            label={item.client_name}
-            fontSize={mvs(13)}
-            color={colors.lightblack}
-            style={{flex: 1}}
-          />
-        </Row>
-        <Row style={{paddingBottom: mvs(5)}}>
-          <Regular
-            label={item.stageheading}
-            fontSize={mvs(13)}
-            color={colors.lightGray}
-            style={{flex: 0.4}}
-          />
-          <Regular
-            label={item.stagetext}
-            fontSize={mvs(13)}
-            color={colors.lightblack}
-            style={{flex: 1}}
-          />
-        </Row>
-        <Row style={{paddingBottom: mvs(5)}}>
-          <Regular
-            label={item.Tasktypehedaer}
-            fontSize={mvs(13)}
-            color={colors.lightGray}
-            style={{flex: 0.4}}
-          />
-          <Regular
-            label={item.tasktypetext}
-            fontSize={mvs(13)}
-            color={colors.lightblack}
-            style={{flex: 1}}
-          />
-        </Row>
-        <Row style={{paddingBottom: mvs(5)}}>
-          <Regular
-            label={item.dateheader}
-            fontSize={mvs(13)}
-            color={colors.lightGray}
-            style={{flex: 0.4}}
-          />
-          <Regular
-            label={item.datetext}
-            fontSize={mvs(13)}
-            color={colors.lightblack}
-            style={{flex: 1}}
-          />
-        </Row>
-        <Row style={{paddingBottom: mvs(5)}}>
-          <Regular
-            label={item.deadlineheader}
-            fontSize={mvs(13)}
-            color={colors.red}
-            style={{flex: 0.4}}
-          />
-          <Regular
-            label={item.deadlinetext}
-            fontSize={mvs(13)}
-            color={colors.red}
-            style={{flex: 1}}
-          />
-        </Row>
+          alignSelf: 'flex-start',
+        }}>
+        <Image
+          source={IMG.cash}
+          resizeMode="contain"
+          style={{
+            width: mvs(40),
+            height: mvs(40),
+            borderRadius: mvs(20),
+            borderWidth: 1,
+            borderColor: colors.primary,
+            marginTop: mvs(5),
+          }}
+        />
       </View>
-      <View style={{flex: 1, justifyContent: 'flex-end'}}>{children}</View>
+      <View style={{flex: 1, marginLeft: mvs(10)}}>
+        <Bold
+          label={item.dep_title}
+          fontSize={mvs(16)}
+          style={{
+            borderBottomWidth: 1,
+            borderBottomColor: colors.lightGray,
+            paddingBottom: mvs(5),
+          }}
+        />
+        <View style={{paddingVertical: mvs(5)}}>
+          <LabelValue
+            label={'User Name:'}
+            value={item.username}
+            labelFlex={0.5}
+            valueFlex={1}
+            labelStyle={{color: colors.lightGray}}
+            valueStyle={{color: colors.lightblack}}
+          />
+          <LabelValue
+            label={'Email:'}
+            value={item.email}
+            labelFlex={0.5}
+            valueFlex={1}
+            labelStyle={{color: colors.lightGray}}
+            valueStyle={{color: colors.lightblack}}
+          />
+          <LabelValue
+            label={'Phone No:'}
+            value={item.phone_number}
+            labelFlex={0.5}
+            valueFlex={1}
+            labelStyle={{color: colors.lightGray}}
+            valueStyle={{color: colors.lightblack}}
+          />
+          <LabelValue
+            label={'CNIC:'}
+            value={item.cnic_no}
+            labelFlex={0.5}
+            valueFlex={1}
+            labelStyle={{color: colors.lightGray}}
+            valueStyle={{color: colors.lightblack}}
+          />
+          {/* </Row> */}
+        </View>
+      </View>
     </TouchableOpacity>
   );
 };
-export default React.memo(ClientListCard);
+export default React.memo(UserListCard);
 const styles = StyleSheet.create({
   container: {
     marginBottom: mvs(20),
@@ -132,6 +113,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
+    flexDirection: 'row',
   },
   leftContainer: {flex: 1, paddingVertical: mvs(10)},
   btnText: {color: colors.primary},

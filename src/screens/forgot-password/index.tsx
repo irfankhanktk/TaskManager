@@ -93,6 +93,7 @@ const ForgotPassword = (props: props) => {
             onChangeText={str => setFieldValue('email', str)}
             onBlur={() => setFieldTouched('email', true)}
             value={values.email}
+            labelStyle={{color: colors.white}}
           />
           <PrimaryButtonLogin
             loading={loading}

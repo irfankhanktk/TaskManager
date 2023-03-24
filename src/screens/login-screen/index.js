@@ -45,7 +45,7 @@ const LoginScreen = props => {
         .getToken()
         .then(fcmToken => {
           console.log('fcmToken=>', fcmToken);
-          dispatch(onLogin({...values, token: fcmToken}, setLoading, props));
+          dispatch(onLogin({...values}, setLoading, props));
         })
         .catch(error => console.log(error));
     } catch (error) {
@@ -127,8 +127,8 @@ const LoginScreen = props => {
               //   Object.keys(touched).length === 0
               // }
               loading={loading}
-              // onPress={onSubmit}
-              onPress={() => navigate('DrawerNavigation')}
+              onPress={onSubmit}
+              // onPress={() => navigate('DrawerNavigation')}
               title={t('login')}
             />
             {/* <TouchableOpacity
