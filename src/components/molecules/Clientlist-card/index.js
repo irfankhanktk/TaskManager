@@ -47,7 +47,7 @@ const ClientListCard = ({
       </View>
       <View style={{flex: 1, marginLeft: mvs(10)}}>
         <Bold
-          label={'Client List'}
+          label={item.client_name}
           fontSize={mvs(16)}
           style={{
             borderBottomWidth: 1,

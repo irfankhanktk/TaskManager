@@ -27,19 +27,19 @@ export const APPOINTMNETSTATUS = {
 };
 export const CATEGORIES = [
   // export { default as ammo } from './ammo.svg',
-  {title: 'Today Tasks', icon: 'today', screen: 'Deapartments'},
+  {title: 'Dashboard', icon: 'dashboard', screen: 'BottomTab'},
   // export { default as handguns } from './handguns.svg'
-  {title: 'Tomorrow Tasks', icon: 'tomorrow', screen: 'UpdatePassword'},
+  {title: 'Departments', icon: 'departments', screen: 'Deapartments'},
   // export { default as rifles } from './rifles.svg'
-  {title: 'Over All Tasks', icon: 'overall', screen: 'details'},
+  {title: 'Tasks', icon: 'tasks', screen: 'TaskList'},
   // export { default as shotguns } from './shotguns.svg'
-  {title: 'Upcoming Tasks', icon: 'upcoming', screen: 'details'},
+  {title: 'Clients', icon: 'clients', screen: 'ClientList'},
   // export { default as gun_parts } from './gun-parts.svg'
-  {title: 'In Progress Tasks', icon: 'inprogress', screen: 'details'},
+  {title: 'Users', icon: 'users', screen: 'UserList'},
   // export { default as knives } from './knives.svg'
-  {title: 'Completed Tasks', icon: 'completed', screen: 'details'},
-  // export { default as accessories } from './accessories.svg'
-  {title: 'Over Due Tasks', icon: 'overdue', screen: 'details'},
+  {title: 'Profile', icon: 'profile', screen: 'UpdatePassword'},
+  // // export { default as accessories } from './accessories.svg'
+  // {title: 'Over Due Tasks', icon: 'overdue', screen: 'details'},
   // export { default as reloading } from './reloading.svg'
   //   {title: 'reloading', icon: 'reloading', screen: 'details'},
   //   // export { default as optics_sights } from './optics-sights.svg'

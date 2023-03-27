@@ -15,10 +15,9 @@ export {default as charticon} from './tomorrowtaskchartTM.png';
 export {default as taskgif} from './87889-clock-checklist.json';
 /////Drawer Tab Images ////
 
-export {default as today} from './todaytasks.png';
-export {default as tomorrow} from './tomorrowtask.png';
-export {default as overall} from './overalltasks.png';
-export {default as upcoming} from './upcoming.png';
-export {default as inprogress} from './work-in-progress.png';
-export {default as completed} from './completed.png';
-export {default as overdue} from './overdue.png';
+export {default as dashboard} from './dashboard.png';
+export {default as departments} from './workers-connections-symbol.png';
+export {default as tasks} from './tomorrowtask.png';
+export {default as users} from './group.png';
+export {default as clients} from './clerk-with-tie.png';
+export {default as profile} from './user-avatar.png';
