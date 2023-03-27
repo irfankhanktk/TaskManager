@@ -24,6 +24,7 @@ import * as SVGS from 'assets/icons';
 
 const TaskList = props => {
   const {userInfo} = useAppSelector(s => s?.user);
+  const {taskTitle, id} = props?.route?.params || {};
   console.log(userInfo);
   const [loading, setLoading] = React.useState(true);
   const [taskList, setTaskList] = React.useState([]);
@@ -34,11 +35,11 @@ const TaskList = props => {
     (async () => {
       try {
         setLoading(true);
-        const res = await getTaskList();
+        const res = await getTaskList({id: id || 2});
         console.log('res of tasklist ==>>>>>', res);
         setTaskList(res?.tasksList || []);
       } catch (error) {
-        console.log('error=>', error);
+        console.log('error in=>', error);
       } finally {
         setLoading(false);
       }
@@ -57,7 +58,7 @@ const TaskList = props => {
   }, [searchTerm]);
   return (
     <View style={styles.container}>
-      <Header1x2x title={'Tasks List'} />
+      <Header1x2x title={taskTitle || 'Tasks List'} />
       <SearchInput
         containerStyle={{marginHorizontal: mvs(20)}}
         onChangeText={setSearchTerm}
@@ -68,7 +69,7 @@ const TaskList = props => {
           <Loader />
         ) : (
           <FlatList
-            ListEmptyComponent={<EmptyList label={'no_result'} />}
+            ListEmptyComponent={<EmptyList label={' No Result'} />}
             data={searchTerm?.trim()?.length ? searchList : taskList}
             contentContainerStyle={styles.contentContainerStyle}
             renderItem={({item, index}) => {

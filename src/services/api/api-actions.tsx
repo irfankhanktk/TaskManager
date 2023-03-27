@@ -2,7 +2,7 @@ import {STORAGEKEYS} from 'config/constants';
 import {goBack} from 'navigation/navigation-ref';
 import {Alert} from 'react-native';
 import {AppDispatch, RootState} from 'store';
-import {getData, postData} from '.';
+import {getData, postData, postFormData} from '.';
 import {
   setHospitals,
   setSpecCategories,
@@ -259,12 +259,21 @@ export const getClientList = async () => {
     throw UTILS.returnError(error);
   }
 };
+export const getTaskCounter = async () => {
+  try {
+    const res = await getData(URLS.get_task_counter);
+    console.log('res of task counter=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in get task counter', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
 export const getTaskList = async (values: any) => {
   try {
-    const res = await postData(URLS.get_tasklist, {
-      values,
-    });
-    console.log('res of tasklist=>', res);
+    const res = await postData(URLS.get_tasklist, values);
+    console.log('res of tasklist data=>', res);
     return res;
   } catch (error: any) {
     console.log('error in tasklist', UTILS.returnError(error));

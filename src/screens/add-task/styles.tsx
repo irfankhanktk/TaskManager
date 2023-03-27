@@ -14,8 +14,6 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
-    // paddingHorizontal: mvs(20),
-    // paddingVertical: mvs(20),
   },
   contentContainerStyle: {
     flexGrow: 1,
@@ -24,9 +22,9 @@ const styles = StyleSheet.create({
     paddingBottom: mvs(100),
     marginTop: mvs(10),
   },
-  columnWrapperStyle: {
-    justifyContent: 'space-between',
-  },
+  // columnWrapperStyle: {
+  //   justifyContent: 'space-between',
+  // },
   servicesHeading: {
     marginHorizontal: mvs(20),
   },

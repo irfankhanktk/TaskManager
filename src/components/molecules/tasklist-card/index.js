@@ -29,7 +29,7 @@ const ClientListCard = ({
   return (
     <TouchableOpacity style={styles.container}>
       <Bold
-        label={item.title}
+        label={item.s_task_name}
         fontSize={mvs(16)}
         style={{
           borderBottomWidth: 1,
@@ -54,13 +54,13 @@ const ClientListCard = ({
         </Row>
         <Row style={{paddingBottom: mvs(5)}}>
           <Regular
-            label={item.stageheading}
+            label={'Task Name:'}
             fontSize={mvs(13)}
             color={colors.lightGray}
             style={{flex: 0.4}}
           />
           <Regular
-            label={item.stagetext}
+            label={item.s_task_name}
             fontSize={mvs(13)}
             color={colors.lightblack}
             style={{flex: 1}}
@@ -68,13 +68,18 @@ const ClientListCard = ({
         </Row>
         <Row style={{paddingBottom: mvs(5)}}>
           <Regular
-            label={item.Tasktypehedaer}
+            label={'Progress:'}
             fontSize={mvs(13)}
             color={colors.lightGray}
             style={{flex: 0.4}}
           />
           <Regular
-            label={item.tasktypetext}
+            // label={item.progress}
+             label={item.progress === 100
+              ? 'Completed'
+              : item.progress === 50
+              ? 'In progress'
+              : 'Not Started'}
             fontSize={mvs(13)}
             color={colors.lightblack}
             style={{flex: 1}}
@@ -82,13 +87,13 @@ const ClientListCard = ({
         </Row>
         <Row style={{paddingBottom: mvs(5)}}>
           <Regular
-            label={item.dateheader}
+            label={'Created at:'}
             fontSize={mvs(13)}
             color={colors.lightGray}
             style={{flex: 0.4}}
           />
           <Regular
-            label={item.datetext}
+            label={moment(item.created_at).format('ddd, MMM Do YYYY, h:mm A')}
             fontSize={mvs(13)}
             color={colors.lightblack}
             style={{flex: 1}}
@@ -96,13 +101,13 @@ const ClientListCard = ({
         </Row>
         <Row style={{paddingBottom: mvs(5)}}>
           <Regular
-            label={item.deadlineheader}
+            label={'Deadline:'}
             fontSize={mvs(13)}
             color={colors.red}
             style={{flex: 0.4}}
           />
           <Regular
-            label={item.deadlinetext}
+            label={moment(item.end_date).format('ddd, MMM Do YYYY')}
             fontSize={mvs(13)}
             color={colors.red}
             style={{flex: 1}}

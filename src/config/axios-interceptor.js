@@ -21,7 +21,8 @@ client.interceptors.request.use(
     config.headers = {
       Accept: 'application/json',
       'Cache-Control': 'no-cache',
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
     };
     // config.signal = newAbortSignal(15000),
     config.params = config.params || {};

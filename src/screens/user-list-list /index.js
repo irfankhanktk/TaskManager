@@ -20,7 +20,7 @@ const UserList = props => {
       try {
         setLoading(true);
         const res = await getUserList();
-        console.log('res of userlist ==>>>>>', res);
+        // console.log('res of userlist ==>>>>>', res);
         setUserList(res?.allUsers || []);
       } catch (error) {
         console.log('error=>', error);

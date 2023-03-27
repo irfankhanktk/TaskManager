@@ -49,7 +49,10 @@ const item = {
 const TaskListDetails = props => {
   return (
     <View style={styles.container}>
-      <Header1x2x title={'Tasks List View'} />
+      <Header1x2x
+        title={'Tasks List View'}
+        onPressUpdate={() => navigate('UpdateTaskList', {item})}
+      />
 
       <ScrollView style={styles.contentContainerStyle}>
         <TaskdetailsCard labelFlex={0.7} item={item}></TaskdetailsCard>

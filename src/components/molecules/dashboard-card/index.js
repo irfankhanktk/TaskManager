@@ -20,22 +20,24 @@ const DashboardCard = ({
   item,
 
   style,
-  onPress = () => {},
+  onPress = title => {},
 
   children,
 }) => {
   const {t} = i18n;
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => onPress(item.title)}>
       <Medium label={item.title} fontSize={mvs(11)} />
       <Medium label={item.number} fontSize={mvs(18)} color={colors.primary} />
       <View style={{flex: 1, justifyContent: 'flex-end'}}>
         {children}
 
-        {item.isProgress && (
+        {/* {item.isProgress && (
           <View style={{alignItems: 'flex-end'}}>
             <CircularProgress
-              value={60}
+              value={70}
               valueSuffix={'%'}
               radius={20}
               duration={2000}
@@ -51,7 +53,7 @@ const DashboardCard = ({
               // progressValueColor={'#fff'}
             />
           </View>
-        )}
+        )} */}
         {item.isGif && (
           <View style={{alignItems: 'flex-end'}}>
             <LottieView

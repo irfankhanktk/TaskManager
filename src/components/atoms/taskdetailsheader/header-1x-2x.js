@@ -13,6 +13,7 @@ const HeaderX = ({
   title,
   back = false,
   onChangeText = t => {},
+  onPressUpdate = () => {},
   isSearch = false,
   placeholder = 'Search here',
   ...props
@@ -29,9 +30,7 @@ const HeaderX = ({
           />
         </TouchableOpacity>
         <Medium fontSize={mvs(18)} label={title} style={[styles.title]} />
-        <TouchableOpacity
-          style={styles.filter}
-          onPress={() => navigation.navigate('UpdateTaskList')}>
+        <TouchableOpacity style={styles.filter} onPress={onPressUpdate}>
           <FontAwesome name="edit" size={mvs(12)} color={colors.white} />
           <Medium label={'Update'} fontSize={mvs(12)} color={colors.white} />
         </TouchableOpacity>

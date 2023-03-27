@@ -5,6 +5,7 @@ import {mvs} from 'config/metrices';
 import * as React from 'react';
 import {StatusBar, StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import AddTask from 'screens/add-task';
 import ClientList from 'screens/Clientss-list';
 import Deapartments from 'screens/departments';
 import ForgotPassword from 'screens/forgot-password';
@@ -70,6 +71,8 @@ export const RootNavigator = () => {
         {/* <Stack.Screen name="LanguageScreen" component={LanguageScreen} /> */}
         <Stack.Screen name="UpdateProfile" component={UpdateProfile} />
         <Stack.Screen name="TaskList" component={TaskList} />
+        <Stack.Screen name="TaskListDashboard" component={TaskList} />
+        <Stack.Screen name="AddTask" component={AddTask} />
         <Stack.Screen name="TaskListDetails" component={TaskListDetails} />
         <Stack.Screen name="ClientList" component={ClientList} />
         <Stack.Screen name="UserList" component={UserList} />
