@@ -1,43 +1,29 @@
-import {useIsFocused} from '@react-navigation/native';
-import {appointment_bg} from 'assets/images';
-import {IconButton, PlusButton} from 'components/atoms/buttons';
+import { useIsFocused } from '@react-navigation/native';
+import * as SVGS from 'assets/icons';
+import { PlusButton } from 'components/atoms/buttons';
 import AppHeader from 'components/atoms/headers';
-import {SearchInput} from 'components/atoms/inputs';
-import {Row} from 'components/atoms/row';
-import AppointmentCounter from 'components/molecules/appointment-counter';
-import {EmptyList} from 'components/molecules/empty-list';
-import PopularPatientCard from 'components/molecules/popular-patient-card';
-import {colors} from 'config/colors';
-import {mvs, width} from 'config/metrices';
-import {useAppDispatch, useAppSelector} from 'hooks/use-store';
-import {navigate} from 'navigation/navigation-ref';
+import { Loader } from 'components/atoms/loader';
+import { Row } from 'components/atoms/row';
+import DashboardCard from 'components/molecules/dashboard-card';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
+import { useAppDispatch, useAppSelector } from 'hooks/use-store';
+import { navigate } from 'navigation/navigation-ref';
 import React from 'react';
-import {FlatList, TouchableOpacity, Image} from 'react-native';
-import {ImageBackground, ScrollView, View} from 'react-native';
-import {shadow} from 'react-native-paper';
+import { ScrollView, View } from 'react-native';
+import CircularProgress from 'react-native-circular-progress-indicator';
 import {
-  getAllHospitals,
-  getHomeData,
-  getNotifications,
-  getTaskCounter,
+  getTaskCounter
 } from 'services/api/api-actions';
 import i18n from 'translation';
-import Bold from 'typography/bold-text';
-import Medium from 'typography/medium-text';
-import Regular from 'typography/regular-text';
 import styles from './styles';
-import * as IMG from 'assets/images';
-import DashboardCard from 'components/molecules/dashboard-card';
-import * as SVGS from 'assets/icons';
-import CircularProgress from 'react-native-circular-progress-indicator';
-import {Loader} from 'components/atoms/loader';
 
 const Home = props => {
-  const {navigation} = props;
-  const {userInfo, unreadNotification, location} = useAppSelector(s => s?.user);
+  const { navigation } = props;
+  const { userInfo, unreadNotification, location } = useAppSelector(s => s?.user);
   const isFocus = useIsFocused();
   const dispatch = useAppDispatch();
-  const {t} = i18n;
+  const { t } = i18n;
 
   const [loading, setLoading] = React.useState(true);
   const [taskCounter, setTaskCounter] = React.useState({});
@@ -64,7 +50,6 @@ const Home = props => {
         onMenuClick={() => navigation?.toggleDrawer()}
         title={'Dashboard'}
       />
-
       <ScrollView style={styles.contentContainerStyle}>
         <View style={styles.body}>
           {loading ? (
@@ -121,7 +106,7 @@ const Home = props => {
                     number: taskCounter?.alltasks,
                     isProgress: true,
                   }}>
-                  <View style={{alignItems: 'flex-end'}}>
+                  <View style={{ alignItems: 'flex-end' }}>
                     <CircularProgress
                       value={
                         (taskCounter?.completed / taskCounter?.alltasks) * 100
@@ -131,14 +116,14 @@ const Home = props => {
                       duration={2000}
                       progressValueColor={'#000'}
                       maxValue={100}
-                      titleStyle={{fontWeight: 'bold'}}
+                      titleStyle={{ fontWeight: 'bold' }}
                       activeStrokeWidth={mvs(2)}
                       inActiveStrokeWidth={mvs(4)}
                       // style={{alignSelf: 'flex-end'}}
                       inActiveStrokeColor={colors.lightGray}
                       activeStrokeColor={colors.red}
                       inActiveStrokeOpacity={0.2}
-                      // progressValueColor={'#fff'}
+                    // progressValueColor={'#fff'}
                     />
                   </View>
                 </DashboardCard>
@@ -222,7 +207,7 @@ const Home = props => {
                     number: taskCounter?.overdue,
                     isProgress: true,
                   }}>
-                  <View style={{alignItems: 'flex-end'}}>
+                  <View style={{ alignItems: 'flex-end' }}>
                     <CircularProgress
                       value={
                         (taskCounter?.overdue / taskCounter?.alltasks) * 100
@@ -232,14 +217,14 @@ const Home = props => {
                       duration={2000}
                       progressValueColor={'#000'}
                       maxValue={100}
-                      titleStyle={{fontWeight: 'bold'}}
+                      titleStyle={{ fontWeight: 'bold' }}
                       activeStrokeWidth={mvs(2)}
                       inActiveStrokeWidth={mvs(4)}
                       // style={{alignSelf: 'flex-end'}}
                       inActiveStrokeColor={colors.lightGray}
                       activeStrokeColor={'purple'}
                       inActiveStrokeOpacity={0.2}
-                      // progressValueColor={'#fff'}
+                    // progressValueColor={'#fff'}
                     />
                   </View>
                 </DashboardCard>
@@ -294,7 +279,7 @@ const Home = props => {
       </ScrollView>
 
       <PlusButton
-        containerStyle={{bottom: mvs(100)}}
+        containerStyle={{ bottom: mvs(100) }}
         onPress={() => navigate('AddTask')}
       />
     </View>
