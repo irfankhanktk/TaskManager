@@ -17,6 +17,9 @@ export const URLS = {
   get_tasklist: 'auth/taskDetails',
   get_task_counter: 'auth/tasks/taskscounter',
   get_department_list: 'auth/departmentDetails',
+  update_department: 'auth/departments/update-department',
+  add_department: 'auth/departments/add-department',
+  delete_department: 'auth/departments/delete-department',
 
   notification: {
     get_notification: 'doctor/getNotification',

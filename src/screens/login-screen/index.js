@@ -129,7 +129,7 @@ const LoginScreen = props => {
               loading={loading}
               onPress={onSubmit}
               // onPress={() => navigate('DrawerNavigation')}
-              title={t('login')}
+              title={'Login'}
             />
             {/* <TouchableOpacity
               style={{alignSelf: 'center', marginTop: mvs(20)}}

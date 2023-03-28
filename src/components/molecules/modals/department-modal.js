@@ -36,7 +36,7 @@ const DepartmentModal = ({
       visible={visible}
       style={[styles.contentContainerStyle, style]}>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.departmenstlistcontainer}>
+        <View style={styles.departmenstlistcontainer}>
           <Row
             style={{
               borderBottomWidth: 1,
@@ -121,7 +121,7 @@ const DepartmentModal = ({
               />
             </Row>
           </View>
-        </TouchableOpacity>
+        </View>
       </View>
     </ModalWrapper>
   );

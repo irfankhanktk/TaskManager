@@ -15,6 +15,7 @@ const HeaderX = ({
   onChangeText = t => {},
   isSearch = false,
   placeholder = 'Search here',
+  onPressAdd = () => {},
   ...props
 }) => {
   const navigation = useNavigation();
@@ -29,9 +30,7 @@ const HeaderX = ({
           />
         </TouchableOpacity>
         <Medium fontSize={mvs(20)} label={title} style={[styles.title]} />
-        <TouchableOpacity
-          style={styles.filter}
-          onPress={() => navigation?.navigate('Deapartments')}>
+        <TouchableOpacity style={styles.filter} onPress={onPressAdd}>
           <AntDesign name="pluscircle" size={mvs(18)} color={colors.white} />
           <Medium label={'Add'} fontSize={mvs(13)} color={colors.white} />
         </TouchableOpacity>

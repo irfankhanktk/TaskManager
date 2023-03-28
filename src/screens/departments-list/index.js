@@ -6,35 +6,48 @@ import UserListCard from 'components/molecules/UserList-card ';
 import {EmptyList} from 'components/molecules/empty-list';
 import {mvs} from 'config/metrices';
 import React from 'react';
-import {FlatList, View} from 'react-native';
-import {getDepartmentList, getUserList} from 'services/api/api-actions';
+import {Alert, FlatList, View} from 'react-native';
+import {
+  addDepartment,
+  addDepartmentList,
+  deleteDepartment,
+  editDepartmentList,
+  getDepartmentList,
+  getUserList,
+} from 'services/api/api-actions';
 import styles from './styles';
 import DepartmentlistCard from 'components/molecules/departmentlist-card';
 import DropdownModal from 'components/molecules/modals/dropdown-modal';
 
 import DepartmentModal from 'components/molecules/modals/department-modal';
+import EditDepartmentModal from 'components/molecules/modals/edit-department-modal';
 
 const DepartmentList = props => {
   const [loading, setLoading] = React.useState(true);
+  const [saveLoading, setSaveLoading] = React.useState(false);
   const [departmentList, setDepartmentList] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState('');
   const [searchList, setSearchList] = React.useState([]);
   const [showDepartmentDetails, setShowDepartmentDetails] =
     React.useState(false);
-  const [selctedDepartment, setSelctedDepartment] = React.useState({});
+  const [selectedDepartment, setSelectedDepartment] = React.useState({});
+  const [showDepartment, setShowDepartment] = React.useState(false);
+
+  const getDepartments = async () => {
+    try {
+      // setLoading(true);
+      const res = await getDepartmentList();
+      // console.log('res of userlist ==>>>>>', res);
+      setDepartmentList(res?.allDepartments || []);
+    } catch (error) {
+      console.log('error=>', error);
+    } finally {
+      setLoading(false);
+    }
+  };
   React.useEffect(() => {
-    (async () => {
-      try {
-        setLoading(true);
-        const res = await getDepartmentList();
-        // console.log('res of userlist ==>>>>>', res);
-        setDepartmentList(res?.allDepartments || []);
-      } catch (error) {
-        console.log('error=>', error);
-      } finally {
-        setLoading(false);
-      }
-    })();
+    // ()();
+    getDepartments();
   }, []);
   React.useEffect(() => {
     if (searchTerm?.trim()?.length) {
@@ -47,9 +60,66 @@ const DepartmentList = props => {
       setSearchList(filtered);
     }
   }, [searchTerm]);
+
+  const onSave = async () => {
+    try {
+      setSaveLoading(true);
+      const res = selectedDepartment?.id
+        ? await editDepartmentList({
+            id: selectedDepartment?.id,
+            dep_title: selectedDepartment?.dep_title,
+            description: selectedDepartment?.description,
+          })
+        : await addDepartment({
+            dep_title: selectedDepartment?.dep_title,
+            description: selectedDepartment?.description,
+          });
+      Alert.alert('Success', 'Saved Successfully');
+      await getDepartments();
+
+      console.log('res of edit department', res);
+    } catch (error) {
+      console.log('error=>', error);
+    } finally {
+      setSaveLoading(false);
+      setShowDepartmentDetails(false);
+    }
+  };
+  const onDelete = async id => {
+    Alert.alert('Delete', 'Are you sure you want to Delete?', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'Delete',
+        onPress: async () => {
+          try {
+            setLoading(true);
+            const res = await deleteDepartment({id: id});
+            Alert.alert('Success', 'Department Deleted Successfully');
+
+            await getDepartments();
+            console.log('res of edit department', res);
+          } catch (error) {
+            console.log('error=>', error);
+          } finally {
+            setLoading(false);
+          }
+        },
+      },
+    ]);
+  };
   return (
     <View style={styles.container}>
-      <Header1x2x title={'Departments'} />
+      <Header1x2x
+        title={'Departments'}
+        onPressAdd={() => {
+          setShowDepartmentDetails(true);
+          setSelectedDepartment({});
+        }}
+      />
       <SearchInput
         containerStyle={{marginHorizontal: mvs(20)}}
         onChangeText={setSearchTerm}
@@ -67,10 +137,16 @@ const DepartmentList = props => {
               return (
                 <DepartmentlistCard
                   onPress={() => {
-                    setShowDepartmentDetails(true);
-                    setSelctedDepartment(item);
+                    setShowDepartment(true);
+                    setSelectedDepartment(item);
                   }}
-                  item={item}></DepartmentlistCard>
+                  onPressEdit={() => {
+                    setShowDepartmentDetails(true);
+                    setSelectedDepartment(item);
+                  }}
+                  item={item}
+                  onPressDelete={() => onDelete(item?.id)}
+                />
               );
             }}
             keyExtractor={(item, index) => index.toString()}
@@ -79,9 +155,17 @@ const DepartmentList = props => {
         )}
       </View>
       <DepartmentModal
+        visible={showDepartment}
+        department={selectedDepartment}
+        onClose={setShowDepartment}
+      />
+      <EditDepartmentModal
         visible={showDepartmentDetails}
-        department={selctedDepartment}
+        department={selectedDepartment}
         onClose={setShowDepartmentDetails}
+        onChange={setSelectedDepartment}
+        onPressSave={() => onSave()}
+        loading={saveLoading}
       />
     </View>
   );

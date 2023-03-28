@@ -1,15 +1,15 @@
-import { STORAGEKEYS } from 'config/constants';
-import { goBack } from 'navigation/navigation-ref';
-import { Alert } from 'react-native';
-import { AppDispatch, RootState } from 'store';
-import { getData, postData } from '.';
+import {STORAGEKEYS} from 'config/constants';
+import {goBack} from 'navigation/navigation-ref';
+import {Alert} from 'react-native';
+import {AppDispatch, RootState} from 'store';
+import {getData, postData} from '.';
 import {
   setNotifications,
   setUserInfo,
-  setWallet
+  setWallet,
 } from '../../store/reducers/user-reducer';
-import { UTILS } from '../../utils';
-import { URLS } from './api-urls';
+import {UTILS} from '../../utils';
+import {URLS} from './api-urls';
 
 // export const getNearByHospitals = async (lat: any, long: any) => {
 //     try {
@@ -95,6 +95,39 @@ export const getDepartmentList = async (values: any) => {
     return res;
   } catch (error: any) {
     console.log('error in departmenstlist', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
+export const editDepartmentList = async (values: any) => {
+  try {
+    const res = await postData(URLS.update_department, values);
+    console.log('res of editdepartmentslist data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in editdepartmenstlist', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
+export const addDepartment = async (values: any) => {
+  try {
+    const res = await postData(URLS.add_department, values);
+    console.log('res of adddepartments data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in adddepartmenst', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
+export const deleteDepartment = async (values: any) => {
+  try {
+    const res = await postData(URLS.delete_department, values);
+    console.log('res of deletedepartments data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in deletedepartmenst', UTILS.returnError(error));
     Alert.alert('', UTILS.returnError(error));
     throw UTILS.returnError(error);
   }

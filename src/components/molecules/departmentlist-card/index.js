@@ -24,6 +24,8 @@ const DepartmentListCard = ({
 
   style,
   onPress = () => {},
+  onPressEdit = () => {},
+  onPressDelete = () => {},
 
   children,
 }) => {
@@ -46,10 +48,10 @@ const DepartmentListCard = ({
           // }}
         />
         <Row>
-          <TouchableOpacity style={{marginRight: mvs(8)}}>
+          <TouchableOpacity style={{marginRight: mvs(8)}} onPress={onPressEdit}>
             <FontAwesome name="edit" size={mvs(20)} color={colors.primary} />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={onPressDelete}>
             <MaterialCommunityIcons
               name="delete"
               size={mvs(20)}

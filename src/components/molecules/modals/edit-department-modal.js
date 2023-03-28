@@ -20,14 +20,17 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import moment from 'moment';
 import {shadow} from 'react-native-paper';
+import PrimaryInput from '../../atoms/inputs/index';
 
-const DepartmentModal = ({
+const EditDepartmentModal = ({
   style,
+  loading,
   value,
   visible = false,
   onClose = () => {},
-  onChangeText,
+  onChange,
   department,
+  onPressSave = () => {},
 }) => {
   return (
     <ModalWrapper
@@ -36,97 +39,45 @@ const DepartmentModal = ({
       visible={visible}
       style={[styles.contentContainerStyle, style]}>
       <View style={styles.container}>
-        <TouchableOpacity style={styles.departmenstlistcontainer}>
-          <Row
-            style={{
-              borderBottomWidth: 1,
-              borderBottomColor: colors.lightGray,
-              paddingBottom: mvs(5),
-            }}>
-            <Bold label={department?.dep_title} fontSize={mvs(16)} />
-          </Row>
-          <View style={{paddingVertical: mvs(5)}}>
-            <Row style={{paddingBottom: mvs(5)}}>
-              <Regular
-                label={'Department Name:'}
-                fontSize={mvs(13)}
-                color={colors.lightGray}
-                style={{flex: 0.7}}
-              />
-              <Regular
-                label={department?.dep_title}
-                fontSize={mvs(13)}
-                color={colors.lightblack}
-                style={{flex: 1}}
-              />
-            </Row>
-            <Row style={{paddingBottom: mvs(5)}}>
-              <Regular
-                label={'Area:'}
-                fontSize={mvs(13)}
-                color={colors.lightGray}
-                style={{flex: 0.7}}
-              />
-              <Regular
-                label={department?.description}
-                fontSize={mvs(13)}
-                color={colors.lightblack}
-                style={{flex: 1}}
-              />
-            </Row>
-            <Row style={{paddingBottom: mvs(5)}}>
-              <Regular
-                label={'Strength:'}
-                fontSize={mvs(13)}
-                color={colors.lightGray}
-                style={{flex: 0.7}}
-              />
-              <Regular
-                label={department?.strength}
-                fontSize={mvs(13)}
-                color={colors.lightblack}
-                style={{flex: 1}}
-              />
-            </Row>
-            <Row style={{paddingBottom: mvs(5)}}>
-              <Regular
-                label={'Created at:'}
-                fontSize={mvs(13)}
-                color={colors.lightGray}
-                style={{flex: 0.7}}
-              />
-              <Regular
-                label={moment(department.created_at).format(
-                  'ddd, MMM Do YYYY, h:mm A',
-                )}
-                fontSize={mvs(13)}
-                color={colors.lightblack}
-                style={{flex: 1}}
-              />
-            </Row>
-            <Row style={{paddingBottom: mvs(5)}}>
-              <Regular
-                label={'Updated at:'}
-                fontSize={mvs(13)}
-                color={colors.lightGray}
-                style={{flex: 0.7}}
-              />
-              <Regular
-                label={moment(department.updated_at).format(
-                  'ddd, MMM Do YYYY, h:mm A',
-                )}
-                fontSize={mvs(13)}
-                color={colors.lightblack}
-                style={{flex: 1}}
-              />
-            </Row>
-          </View>
-        </TouchableOpacity>
+        <View style={{alignSelf: 'center', paddingVertical: mvs(10)}}>
+          <Bold
+            label={`${department?.id ? 'Edit' : 'Add'} Department`}
+            fontSize={mvs(20)}
+            color={colors.primary}
+          />
+        </View>
+        <PrimaryInput
+          keyboardType={'email-address'}
+          // error={errors?.email}
+          label={'Department Title'}
+          placeholder={'Department Title'}
+          onChangeText={str => onChange({...department, dep_title: str})}
+          value={department?.dep_title}
+        />
+        <PrimaryInput
+          keyboardType={'email-address'}
+          // error={errors?.email}
+          label={'Area'}
+          placeholder={'Area'}
+          onChangeText={str => onChange({...department, description: str})}
+          value={department?.description}
+        />
+        <PrimaryButton
+          // disabled={
+          //   Object.keys(errors).length > 0 ||
+          //   Object.keys(touched).length === 0
+          // }
+          color={colors.white}
+          loading={loading}
+          onPress={onPressSave}
+          // onPress={() => navigate('DrawerNavigation')}
+          title={'Save'}
+        />
       </View>
     </ModalWrapper>
   );
 };
-export default DepartmentModal;
+export default EditDepartmentModal;
 const styles = StyleSheet.create({
   contentContainerStyle: {
     width: '100%',

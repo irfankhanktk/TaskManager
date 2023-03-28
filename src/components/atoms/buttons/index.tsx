@@ -32,7 +32,15 @@ export const PlusButton = (props: props) => {
   );
 };
 export const PrimaryButton = (props: props) => {
-  const {onPress, title, disabled, loading, textStyle, containerStyle} = props;
+  const {
+    onPress,
+    title,
+    color = colors.primary,
+    disabled,
+    loading,
+    textStyle,
+    containerStyle,
+  } = props;
   return (
     <TouchableOpacity
       disabled={disabled || loading}
@@ -43,7 +51,7 @@ export const PrimaryButton = (props: props) => {
       ]}
       onPress={onPress}>
       {loading ? (
-        <Loader color={colors.primary} />
+        <Loader color={color} />
       ) : (
         <Regular style={[styles.primaryText, textStyle]} label={title} />
       )}
