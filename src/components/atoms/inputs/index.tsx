@@ -34,7 +34,7 @@ type props = {
   onPress?: () => void;
   onPressIn?: () => void;
   getCallingCode?: (text: string) => void | undefined;
-  value?: string;
+  value?: any;
   label?: string;
   items?: Item[];
   placeholder?: string;
@@ -178,6 +178,7 @@ export const InputWithIcon = (props: props) => {
     error,
     label,
     isRequired = false,
+    icon = 'calendar',
   } = props;
   return (
     <>
@@ -194,13 +195,57 @@ export const InputWithIcon = (props: props) => {
         }}
         style={[styles.dropDownContainer, containerStyle]}>
         <Medium label={value} />
-        <AntDesign size={25} name={'calendar'} color={colors.primary} />
+        <AntDesign size={25} name={icon} color={colors.primary} />
       </TouchableOpacity>
       <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} />
       <DropdownModal
         onClose={() => setVisible(false)}
         onChangeText={onChangeText}
         value={id}
+        visible={visible}
+        items={items}
+      />
+    </>
+  );
+};
+export const DropdownInput = (props: props) => {
+  const [visible, setVisible] = React.useState(false);
+  const {
+    items = [],
+    onChangeText,
+    onBlur = () => { },
+    value,
+    style,
+    containerStyle,
+    id,
+    editable,
+    error,
+    label,
+    isRequired = false,
+    icon = 'calendar',
+  } = props;
+  return (
+    <>
+      {label && (
+        <Regular label={label} style={styles.labelStyle}>
+          {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
+        </Regular>
+      )}
+      <TouchableOpacity
+        disabled={editable}
+        onPress={() => {
+          setVisible(true);
+          onBlur();
+        }}
+        style={[styles.dropDownContainer, containerStyle]}>
+        <Medium label={value} />
+        <AntDesign size={25} name={icon} color={colors.primary} />
+      </TouchableOpacity>
+      <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} />
+      <DropdownModal
+        onClose={() => setVisible(false)}
+        onChangeText={onChangeText}
+        value={value}
         visible={visible}
         items={items}
       />

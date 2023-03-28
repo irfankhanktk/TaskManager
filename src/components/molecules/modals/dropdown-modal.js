@@ -16,7 +16,7 @@ const DropdownModal = (
         value,
         visible = false,
         onClose = (item) => { },
-        onChangeText,
+        onChangeText = (value) => { },
         items = [],
     }
 ) => {
@@ -28,18 +28,19 @@ const DropdownModal = (
             style={[styles.contentContainerStyle, style]}>
             <View style={styles.container}>
                 <View style={styles.header} />
-                <TouchableOpacity onPress={() => onClose()} style={styles.cross}>
-                    <CrossModal height={mvs(30)} width={mvs(30)} />
-                </TouchableOpacity>
-                <Medium numberOfLines={2} style={styles.pick}
-                    label={`Please Select one`} />
                 <ScrollView contentContainerStyle={{ flexGrow: 1, paddingHorizontal: mvs(20), paddingTop: mvs(10) }}>
                     {items?.map((item, index) => {
                         return (<TouchableOpacity
-                            onPress={() => onChangeText(item?.id)}
+                            key={index}
+                            onPress={() => {
+                                const copy = [...items];
+                                item.selected = !item.selected;
+                                copy[index] = item;
+                                onChangeText(copy);
+                            }}
                             style={styles.button}>
                             <Medium label={item?.title} style={{ fontSize: mvs(16) }} />
-                            <Icon name={item?.id === value ? 'radio-button-checked' : 'radio-button-unchecked'} size={mvs(20)} />
+                            <Icon name={item?.selected ? 'radio-button-checked' : 'radio-button-unchecked'} size={mvs(20)} />
                         </TouchableOpacity>)
                     })}
                 </ScrollView>
@@ -52,8 +53,8 @@ const styles = StyleSheet.create({
     contentContainerStyle: {
         width: '100%',
         backgroundColor: colors.transparent,
-        flex: 1,
-        justifyContent: 'flex-end',
+        // flex: 1,
+        // justifyContent: 'flex-end',
         paddingHorizontal: 0,
         paddingVertical: 0,
     },

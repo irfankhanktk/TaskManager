@@ -8,7 +8,7 @@ import * as IMG from 'assets/images';
 import { onSignup, onUpdatePassword } from 'services/api/api-actions';
 import { signupFormValidation, updatePasswordValidation } from 'validations';
 import { PrimaryButton } from '../../components/atoms/buttons';
-import PrimaryInput from '../../components/atoms/inputs';
+import PrimaryInput, { DropdownInput, InputWithIcon } from '../../components/atoms/inputs';
 import { KeyboardAvoidScrollview } from '../../components/atoms/keyboard-avoid-scrollview';
 import { useAppDispatch } from '../../hooks/use-store';
 import RootStackParamList from '../../types/navigation-types/root-stack';
@@ -20,6 +20,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { shadow } from 'react-native-paper';
 import { Clientlistavatar } from 'assets/icons';
 import { UTILS } from 'utils';
+import DropdownModal from 'components/molecules/modals/dropdown-modal';
 
 
 const AddTask = (props) => {
@@ -31,12 +32,16 @@ const AddTask = (props) => {
     old_password: '',
   };
   const [image, setImage] = React.useState('');
+  const [ddDepartmentModal, setDdDepartmentModal] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [tasks, setTasks] = React.useState([{
     title: '',
     description: '',
   }]);
-
+  const [managers, setManagers] = React.useState([
+    { id: 1, title: 'Irfan' },
+    { id: 2, title: 'Khan' }]);
+  const [selectedDepartment, setSelectedDepartment] = React.useState({});
   const { values, errors, touched, setFieldValue, setFieldTouched, isValid } =
     useFormik({
       initialValues: initialValues,
@@ -53,7 +58,7 @@ const AddTask = (props) => {
         contentContainerStyle={styles.contentContainerStyle}>
         <View style={styles.taskContainer}>
           {tasks?.map((item, index) => (
-            <View style={styles.inputContainer}>
+            <View key={index} style={styles.inputContainer}>
               <PrimaryInput
                 keyboardType={'email-address'}
                 // error={errors?.email}
@@ -113,12 +118,10 @@ const AddTask = (props) => {
             />
           </TouchableOpacity>
         </View>
+        <DropdownInput
+          label='Select Manager' onChangeText={setManagers} items={managers} icon={'down'} />
         <PrimaryButton
           loading={loading}
-          // disabled={
-          //   Object.keys(errors)?.length > 0 ||
-          //   Object.keys(touched)?.length === 0
-          // }
           title={t('Update')}
           onPress={() => dispatch(onUpdatePassword(values, setLoading, props))}
           containerStyle={styles.button}
