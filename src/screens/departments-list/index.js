@@ -11,13 +11,17 @@ import {getDepartmentList, getUserList} from 'services/api/api-actions';
 import styles from './styles';
 import DepartmentlistCard from 'components/molecules/departmentlist-card';
 import DropdownModal from 'components/molecules/modals/dropdown-modal';
-import CartModal from 'components/molecules/modals/cart-modal';
+
+import DepartmentModal from 'components/molecules/modals/department-modal';
 
 const DepartmentList = props => {
   const [loading, setLoading] = React.useState(true);
   const [departmentList, setDepartmentList] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState('');
   const [searchList, setSearchList] = React.useState([]);
+  const [showDepartmentDetails, setShowDepartmentDetails] =
+    React.useState(false);
+  const [selctedDepartment, setSelctedDepartment] = React.useState({});
   React.useEffect(() => {
     (async () => {
       try {
@@ -60,14 +64,25 @@ const DepartmentList = props => {
             data={searchTerm?.trim()?.length ? searchList : departmentList}
             contentContainerStyle={styles.contentContainerStyle}
             renderItem={({item, index}) => {
-              return <DepartmentlistCard item={item}></DepartmentlistCard>;
+              return (
+                <DepartmentlistCard
+                  onPress={() => {
+                    setShowDepartmentDetails(true);
+                    setSelctedDepartment(item);
+                  }}
+                  item={item}></DepartmentlistCard>
+              );
             }}
             keyExtractor={(item, index) => index.toString()}
             // columnWrapperStyle={{justifyContent: 'space-between'}}
           />
         )}
       </View>
-      <CartModal visible />
+      <DepartmentModal
+        visible={showDepartmentDetails}
+        department={selctedDepartment}
+        onClose={setShowDepartmentDetails}
+      />
     </View>
   );
 };

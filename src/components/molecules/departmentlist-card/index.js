@@ -29,7 +29,7 @@ const DepartmentListCard = ({
 }) => {
   const {t} = i18n;
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Row
         style={{
           borderBottomWidth: 1,
