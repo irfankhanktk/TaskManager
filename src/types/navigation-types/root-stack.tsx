@@ -3,15 +3,11 @@ type RootStackParamList = {
   Splash: undefined;
   RenewPassword: undefined;
   ForgotPassword: undefined;
-  BottomTab: undefined;
   Signup: undefined;
-  AddAvailability: undefined;
-  AvailabilityList: undefined;
-  AvailabilityDetails: undefined;
+  DrawerNavigation: undefined;
 
   Home: undefined;
   Login: undefined;
-  Hotels: undefined;
   SearchTab: undefined;
   UserTab: undefined;
   UpdatePassword: undefined;
