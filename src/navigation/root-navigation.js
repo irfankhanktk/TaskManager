@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AddTask from 'screens/add-task';
 import ClientList from 'screens/Clientss-list';
 import Deapartments from 'screens/departments';
+import DepartmentList from 'screens/departments-list';
 import ForgotPassword from 'screens/forgot-password';
 import LoginScreen from 'screens/login-screen';
 import Notifications from 'screens/notifications';
@@ -79,6 +80,7 @@ export const RootNavigator = () => {
         <Stack.Screen name="Deapartments" component={Deapartments} />
         <Stack.Screen name="ReminderTask" component={ReminderTask} />
         <Stack.Screen name="UpdateTaskList" component={UpdateTaskList} />
+        <Stack.Screen name="DepartmentList" component={DepartmentList} />
         {/* <Stack.Screen
           name="AppointmentDetails"
           component={AppointmentDetails}

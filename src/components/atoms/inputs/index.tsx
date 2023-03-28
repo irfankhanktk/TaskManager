@@ -24,7 +24,7 @@ import { colors } from './../../../config/colors';
 import Medium from 'typography/medium-text';
 import { Row } from '../row';
 import { useAppSelector } from 'hooks/use-store';
-import CartModal from 'components/molecules/modals/cart-modal';
+import CartModal from 'components/molecules/modals/department-modal';
 import DropdownModal from 'components/molecules/modals/dropdown-modal';
 import { t } from 'i18next';
 type Item = { label: string; value: string };

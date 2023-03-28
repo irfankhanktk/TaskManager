@@ -29,7 +29,7 @@ export const CATEGORIES = [
   // export { default as ammo } from './ammo.svg',
   {title: 'Dashboard', icon: 'dashboard', screen: 'BottomTab'},
   // export { default as handguns } from './handguns.svg'
-  {title: 'Departments', icon: 'departments', screen: 'Deapartments'},
+  {title: 'Departments', icon: 'departments', screen: 'DepartmentList'},
   // export { default as rifles } from './rifles.svg'
   {title: 'Tasks', icon: 'tasks', screen: 'TaskList'},
   // export { default as shotguns } from './shotguns.svg'
