@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import {
   ColorValue,
   I18nManager,
@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TextInput,
   TextInputFocusEventData,
+  TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
@@ -18,15 +19,15 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import PhoneInput from 'react-native-phone-number-input';
 import Regular from 'typography/regular-text';
-import {mvs} from '../../../config/metrices';
-import {colors} from './../../../config/colors';
+import { mvs } from '../../../config/metrices';
+import { colors } from './../../../config/colors';
 import Medium from 'typography/medium-text';
-import {Row} from '../row';
-import {useAppSelector} from 'hooks/use-store';
+import { Row } from '../row';
+import { useAppSelector } from 'hooks/use-store';
 import CartModal from 'components/molecules/modals/cart-modal';
 import DropdownModal from 'components/molecules/modals/dropdown-modal';
-import {t} from 'i18next';
-type Item = {label: string; value: string};
+import { t } from 'i18next';
+type Item = { label: string; value: string };
 type props = {
   isRequired?: boolean;
   onChangeText: (text: string) => void;
@@ -37,7 +38,7 @@ type props = {
   label?: string;
   items?: Item[];
   placeholder?: string;
-  style?: StyleProp<ViewStyle>;
+  style?: StyleProp<TextStyle>;
   labelStyle?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
   errorStyle?: StyleProp<ViewStyle>;
@@ -57,7 +58,7 @@ type props = {
 };
 const PrimaryInput = (props: props) => {
   const [secure, setSecure] = useState(true);
-  const {language} = useAppSelector(s => s.user);
+  const { language } = useAppSelector(s => s.user);
   const {
     onChangeText,
     value,
@@ -74,8 +75,8 @@ const PrimaryInput = (props: props) => {
     keyboardType,
     error,
     editable = true,
-    onBlur = () => {},
-    onPressIn = () => {},
+    onBlur = () => { },
+    onPressIn = () => { },
     isRequired = false,
   } = props;
   return (
@@ -97,7 +98,7 @@ const PrimaryInput = (props: props) => {
           style={[
             styles.textInput,
             style,
-            {textAlign: I18nManager.isRTL ? 'right' : 'left'},
+            { textAlign: I18nManager.isRTL ? 'right' : 'left' },
           ]}
         />
         {isPassword && (
@@ -129,7 +130,7 @@ export default React.memo(PrimaryInput);
 export const CommentInput = (props: props) => {
   const {
     onChangeText,
-    onPress = () => {},
+    onPress = () => { },
     value,
     style,
     placeholder = 'Write Message',
@@ -137,7 +138,7 @@ export const CommentInput = (props: props) => {
     isPassword,
     keyboardType,
     error,
-    onBlur = () => {},
+    onBlur = () => { },
   } = props;
   return (
     <>
@@ -168,7 +169,7 @@ export const InputWithIcon = (props: props) => {
   const {
     items = [],
     onChangeText,
-    onBlur = () => {},
+    onBlur = () => { },
     value,
     style,
     containerStyle,
@@ -210,8 +211,8 @@ export const InputWithIcon = (props: props) => {
 export const PrimaryPhoneInput = (props: props) => {
   const phoneRef = useRef<PhoneInput>(null);
   const {
-    onChangeText = t => {},
-    getCallingCode = t => {},
+    onChangeText = t => { },
+    getCallingCode = t => { },
     value,
     style,
     label,
@@ -305,7 +306,7 @@ export const SearchInput = (props: props) => {
       <TouchableOpacity
         disabled={disabledSearch}
         style={styles.searchIcon}
-        onPress={() => {}}>
+        onPress={() => { }}>
         <Feather size={mvs(22)} name={'search'} color={colors.white} />
       </TouchableOpacity>
     </View>
@@ -317,7 +318,8 @@ const styles = StyleSheet.create({
     borderWidth: mvs(0.7),
     borderColor: colors.primary,
     height: mvs(60),
-    paddingTop: mvs(7),
+    alignItems: 'center',
+    // paddingTop: mvs(7),
     // marginBottom: mvs(5),
     borderRadius: mvs(15),
     flexDirection: 'row',
@@ -357,13 +359,13 @@ const styles = StyleSheet.create({
     borderRadius: mvs(10),
     overflow: 'hidden',
   },
-  textContainerStyle: {backgroundColor: colors.white},
+  textContainerStyle: { backgroundColor: colors.white },
   textInput: {
     color: colors.black,
     textAlignVertical: 'center',
     fontSize: mvs(18),
     flex: 1,
-    height: mvs(40),
+    // height: mvs(40),
     // width: mvs(275),
     padding: mvs(0),
   },

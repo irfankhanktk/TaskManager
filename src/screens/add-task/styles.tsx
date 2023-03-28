@@ -1,16 +1,36 @@
-import {StyleSheet} from 'react-native';
-import {mvs} from '../../config/metrices';
-import {colors} from '../../config/colors';
+import { StyleSheet } from 'react-native';
+import { mvs } from '../../config/metrices';
+import { colors } from '../../config/colors';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.white,
   },
+  inputContainer: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.border,
+    marginBottom: mvs(12),
+  },
+  plusBtn: {
+    alignSelf: 'flex-end',
+  },
+  removeBtn: {
+    alignSelf: 'flex-end',
+    top: 0,
+    position: 'absolute',
+  },
   search: {
     paddingHorizontal: mvs(20),
     marginTop: -30,
     marginBottom: mvs(10),
+  },
+  taskContainer: {
+    padding: mvs(12),
+    borderRadius: mvs(10),
+    borderColor: colors.border,
+    borderWidth: StyleSheet.hairlineWidth,
+    marginBottom: mvs(15),
   },
   body: {
     flex: 1,
