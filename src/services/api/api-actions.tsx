@@ -281,6 +281,17 @@ export const getTaskList = async (values: any) => {
     throw UTILS.returnError(error);
   }
 };
+export const getDepartmentList = async (values: any) => {
+  try {
+    const res = await getData(URLS.get_department_list, values);
+    console.log('res of departmentslist data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in departmenstlist', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
 ///Notifications///
 export const getNotifications = (
   values: any,

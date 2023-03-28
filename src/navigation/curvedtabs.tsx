@@ -19,6 +19,7 @@ import WalletScreen from 'screens/Wallet';
 import TaskList from 'screens/Tasks-list';
 import TaskListDetails from 'screens/Tasks-list-details';
 import UserList from 'screens/user-list-list ';
+import UpdatePassword from 'screens/update-password';
 
 export const TabBar = props => {
   const _renderIcon = (routeName, selectedTab) => {
@@ -103,7 +104,7 @@ export const TabBar = props => {
         />
         <CurvedBottomBar.Screen
           name="title4"
-          component={() => <UserList {...props} />}
+          component={() => <UpdatePassword {...props} />}
           position="RIGHT"
         />
       </CurvedBottomBar.Navigator>

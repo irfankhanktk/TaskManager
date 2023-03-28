@@ -16,6 +16,7 @@ export const URLS = {
   get_clients: 'auth/clients/all-clients',
   get_tasklist: 'auth/taskDetails',
   get_task_counter: 'auth/tasks/taskscounter',
+  get_department_list: 'auth/departmentDetails',
 
   notification: {
     get_notification: 'doctor/getNotification',
