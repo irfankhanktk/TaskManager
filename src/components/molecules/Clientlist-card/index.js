@@ -18,16 +18,20 @@ import {Chart} from 'assets/icons';
 import LottieView from 'lottie-react-native';
 import Bold from 'typography/bold-text';
 import LabelValue from '../label-view';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 const ClientListCard = ({
   item,
   style,
   onPress = () => {},
+  onPressEdit = () => {},
+  onPressDelete = () => {},
 
   children,
 }) => {
   const {t} = i18n;
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View
         style={{
           alignSelf: 'flex-start',
@@ -46,15 +50,28 @@ const ClientListCard = ({
         />
       </View>
       <View style={{flex: 1, marginLeft: mvs(10)}}>
-        <Bold
-          label={item.client_name}
-          fontSize={mvs(16)}
+        <Row
           style={{
             borderBottomWidth: 1,
             borderBottomColor: colors.lightGray,
             paddingBottom: mvs(5),
-          }}
-        />
+          }}>
+          <Bold label={item.client_name} fontSize={mvs(16)} />
+          <Row>
+            <TouchableOpacity
+              style={{marginRight: mvs(8)}}
+              onPress={onPressEdit}>
+              <FontAwesome name="edit" size={mvs(20)} color={colors.primary} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onPressDelete}>
+              <MaterialCommunityIcons
+                name="delete"
+                size={mvs(20)}
+                color={colors.red}
+              />
+            </TouchableOpacity>
+          </Row>
+        </Row>
         <View style={{paddingVertical: mvs(5)}}>
           <LabelValue
             label={'Name:'}
@@ -75,6 +92,14 @@ const ClientListCard = ({
           <LabelValue
             label={'Phone No:'}
             value={item.c_mobile_no}
+            labelFlex={0.5}
+            valueFlex={1}
+            labelStyle={{color: colors.lightGray}}
+            valueStyle={{color: colors.lightblack}}
+          />
+          <LabelValue
+            label={'Address 1:'}
+            value={item.address_1}
             labelFlex={0.5}
             valueFlex={1}
             labelStyle={{color: colors.lightGray}}

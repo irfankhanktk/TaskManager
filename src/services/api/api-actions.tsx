@@ -110,6 +110,28 @@ export const editDepartmentList = async (values: any) => {
     throw UTILS.returnError(error);
   }
 };
+export const editClientList = async (values: any) => {
+  try {
+    const res = await postData(URLS.update_clients, values);
+    console.log('res of editclientlist data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in editclientlist', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
+export const editUserList = async (values: any) => {
+  try {
+    const res = await postData(URLS.update_user, values);
+    console.log('res of edituser data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in edituser', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
 export const addDepartment = async (values: any) => {
   try {
     const res = await postData(URLS.add_department, values);
@@ -121,6 +143,28 @@ export const addDepartment = async (values: any) => {
     throw UTILS.returnError(error);
   }
 };
+export const addClient = async (values: any) => {
+  try {
+    const res = await postData(URLS.add_client, values);
+    console.log('res of addclient data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in addclient', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
+export const addUser = async (values: any) => {
+  try {
+    const res = await postData(URLS.add_user, values);
+    console.log('res of adduser data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in adduser', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
 export const deleteDepartment = async (values: any) => {
   try {
     const res = await postData(URLS.delete_department, values);
@@ -128,6 +172,28 @@ export const deleteDepartment = async (values: any) => {
     return res;
   } catch (error: any) {
     console.log('error in deletedepartmenst', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
+export const deleteClient = async (values: any) => {
+  try {
+    const res = await postData(URLS.delete_clients, values);
+    console.log('res of deleteclients data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in deleteclients', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
+export const deleteUser = async (values: any) => {
+  try {
+    const res = await postData(URLS.delete_user, values);
+    console.log('res of deleteuser data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in deleteuser', UTILS.returnError(error));
     Alert.alert('', UTILS.returnError(error));
     throw UTILS.returnError(error);
   }

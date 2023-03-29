@@ -20,6 +20,13 @@ export const URLS = {
   update_department: 'auth/departments/update-department',
   add_department: 'auth/departments/add-department',
   delete_department: 'auth/departments/delete-department',
+  update_clients: 'auth/clients/update-client',
+  add_client: 'auth/clients/add-client',
+  update_clients: 'auth/clients/update-client',
+  delete_clients: 'auth/clients/delete-client',
+  add_user: 'auth/users/add-user',
+  delete_user: 'auth/users/delete-user',
+  update_user: 'auth/updateInfo',
 
   notification: {
     get_notification: 'doctor/getNotification',

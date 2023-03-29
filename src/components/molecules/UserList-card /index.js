@@ -18,16 +18,19 @@ import {Chart} from 'assets/icons';
 import LottieView from 'lottie-react-native';
 import Bold from 'typography/bold-text';
 import LabelValue from '../label-view';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 const UserListCard = ({
   item,
   style,
   onPress = () => {},
-
+  onPressEdit = () => {},
+  onPressDelete = () => {},
   children,
 }) => {
   const {t} = i18n;
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View
         style={{
           alignSelf: 'flex-start',
@@ -46,15 +49,29 @@ const UserListCard = ({
         />
       </View>
       <View style={{flex: 1, marginLeft: mvs(10)}}>
-        <Bold
-          label={item.dep_title}
-          fontSize={mvs(16)}
+        <Row
           style={{
             borderBottomWidth: 1,
             borderBottomColor: colors.lightGray,
             paddingBottom: mvs(5),
-          }}
-        />
+          }}>
+          <Bold label={item.username} fontSize={mvs(16)} />
+          <Row>
+            <TouchableOpacity
+              style={{marginRight: mvs(8)}}
+              onPress={onPressEdit}>
+              <FontAwesome name="edit" size={mvs(20)} color={colors.primary} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onPressDelete}>
+              <MaterialCommunityIcons
+                name="delete"
+                size={mvs(20)}
+                color={colors.red}
+              />
+            </TouchableOpacity>
+          </Row>
+        </Row>
+
         <View style={{paddingVertical: mvs(5)}}>
           <LabelValue
             label={'User Name:'}
