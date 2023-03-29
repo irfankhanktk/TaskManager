@@ -99,9 +99,9 @@ export const getDepartmentList = async (values: any) => {
     throw UTILS.returnError(error);
   }
 };
-export const getUserDetails = async (values: any) => {
+export const getUserDetails = async () => {
   try {
-    const res = await getData(URLS.get_user_info, values);
+    const res = await getData(URLS.get_user_info);
     console.log('res of userdetails data=>', res);
     return res;
   } catch (error: any) {

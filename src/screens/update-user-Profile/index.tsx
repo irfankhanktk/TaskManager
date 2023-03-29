@@ -20,6 +20,8 @@ import {KeyboardAvoidScrollview} from '../../components/atoms/keyboard-avoid-scr
 import {useAppDispatch} from '../../hooks/use-store';
 import RootStackParamList from '../../types/navigation-types/root-stack';
 import styles from './styles';
+import * as IMG from 'assets/images';
+
 type props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 
 const UpdateUserProfile = (props: props) => {
@@ -81,7 +83,7 @@ const UpdateUserProfile = (props: props) => {
           }}>
           <Image
             // source={IMG.cash}
-            source={{uri: image?.uri}}
+            source={image?.uri ? {uri: image?.uri} : IMG.cash}
             resizeMode="contain"
             style={{
               width: mvs(140),

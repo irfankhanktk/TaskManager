@@ -1,28 +1,23 @@
 import {useIsFocused} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import * as IMG from 'assets/images';
 import Header1x2x from 'components/atoms/headers/header-1x-2x';
 import {Row} from 'components/atoms/row';
 import {colors} from 'config/colors';
 import {mvs} from 'config/metrices';
-import {useFormik} from 'formik';
 import {t} from 'i18next';
+import {navigate} from 'navigation/navigation-ref';
 import React from 'react';
 import {Image, TouchableOpacity, View} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import {getUserDetails, onUpdatePassword} from 'services/api/api-actions';
-import {UTILS} from 'utils';
-import {updatePasswordValidation} from 'validations';
-import {PrimaryButton} from '../../components/atoms/buttons';
-import PrimaryInput from '../../components/atoms/inputs';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {getUserDetails} from 'services/api/api-actions';
+import Medium from 'typography/medium-text';
 import {KeyboardAvoidScrollview} from '../../components/atoms/keyboard-avoid-scrollview';
 import {useAppDispatch} from '../../hooks/use-store';
 import RootStackParamList from '../../types/navigation-types/root-stack';
 import styles from './styles';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Medium from 'typography/medium-text';
-import {navigate} from 'navigation/navigation-ref';
 type props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 
 const UserInfo = (props: props) => {
@@ -30,9 +25,9 @@ const UserInfo = (props: props) => {
   const dispatch = useAppDispatch();
   const isFocus = useIsFocused();
 
-  const [image, setImage] = React.useState('');
+  const [image, setImage] = React.useState<any>('');
   const [loading, setLoading] = React.useState(false);
-  const [userInformation, setUserInfoormation] = React.useState({});
+  const [userInformation, setUserInfoormation] = React.useState<any>({});
   React.useEffect(() => {
     (async () => {
       try {
@@ -61,7 +56,7 @@ const UserInfo = (props: props) => {
           }}>
           <Image
             // source={IMG.cash}
-            source={{uri: image?.uri}}
+            source={image?.uri ? {uri: image?.uri} : IMG.cash}
             resizeMode="contain"
             style={{
               width: mvs(140),
