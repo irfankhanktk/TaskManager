@@ -1,14 +1,10 @@
-import { CrossModal } from 'assets/icons'
-import { Loader } from 'components/atoms/loader'
 import { ModalWrapper } from 'components/atoms/modal-wrapper'
 import { colors } from 'config/colors'
 import React from 'react'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/AntDesign'
 import Medium from 'typography/medium-text'
 import { mvs } from '../../../config/metrices'
-import DoctorAvailabilityLocation from '../doctor-availability-location'
-import { EmptyList } from '../empty-list'
 
 const DropdownModal = (
     {
@@ -37,7 +33,7 @@ const DropdownModal = (
                             }}
                             style={styles.button}>
                             <Medium label={item?.title} style={{ fontSize: mvs(16) }} />
-                            <Icon name={item?.id === value ? 'radio-button-checked' : 'radio-button-unchecked'} size={mvs(20)} />
+                            <Icon name={item?.id === value ? 'checkcircle' : 'checkcircleo'} size={mvs(20)} />
                         </TouchableOpacity>)
                     })}
                 </ScrollView>
@@ -69,7 +65,7 @@ const styles = StyleSheet.create({
         width: mvs(104),
         alignSelf: 'center',
         backgroundColor: colors.lightGray,
-        marginBottom: mvs(20)
+        marginBottom: mvs(10)
     },
     pick: {
         textAlign: 'center',
@@ -78,10 +74,11 @@ const styles = StyleSheet.create({
     },
     button: {
         paddingHorizontal: mvs(30),
-        marginBottom: mvs(20),
+        paddingVertical: mvs(10),
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderBottomWidth: 0.7,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderColor: colors.border,
     },
     cross: { padding: mvs(20), alignSelf: 'flex-end', position: 'absolute', }
 

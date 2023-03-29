@@ -7,13 +7,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
   },
+  width: { width: '48%' },
   inputContainer: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: colors.border,
     marginBottom: mvs(12),
   },
+  row: {
+    marginBottom: mvs(10)
+  },
   plusBtn: {
     alignSelf: 'flex-end',
+    position: 'absolute',
+    bottom: mvs(0),
+    paddingHorizontal: mvs(10),
+    paddingBottom: mvs(5),
   },
   removeBtn: {
     alignSelf: 'flex-end',
@@ -29,7 +37,8 @@ const styles = StyleSheet.create({
     padding: mvs(12),
     borderRadius: mvs(10),
     borderColor: colors.border,
-    borderWidth: StyleSheet.hairlineWidth,
+    // borderWidth: StyleSheet.hairlineWidth,
+    backgroundColor: colors.secondary,
     marginBottom: mvs(15),
   },
   body: {

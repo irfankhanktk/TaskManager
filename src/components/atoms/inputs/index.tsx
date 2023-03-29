@@ -28,16 +28,17 @@ import CartModal from 'components/molecules/modals/department-modal';
 import DropdownModal from 'components/molecules/modals/dropdown-modal';
 import { t } from 'i18next';
 import MultiDropdownModal from 'components/molecules/modals/multi-dropdown-modal';
+import { ScrollView } from 'react-native-gesture-handler';
 type Item = { label: string; value: string };
 type props = {
   isRequired?: boolean;
-  onChangeText: (text: string) => void;
+  onChangeText: (text: string | any[]) => void;
   onPress?: () => void;
   onPressIn?: () => void;
   getCallingCode?: (text: string) => void | undefined;
   value?: any;
   label?: string;
-  items?: Item[];
+  items?: any[];
   placeholder?: string;
   style?: StyleProp<TextStyle>;
   labelStyle?: StyleProp<ViewStyle>;
@@ -182,23 +183,21 @@ export const InputWithIcon = (props: props) => {
     icon = 'calendar',
   } = props;
   return (
-    <>
-      {label && (
-        <Regular label={label} style={styles.labelStyle}>
-          {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
-        </Regular>
-      )}
+    <View style={[containerStyle]}>
+      <Regular label={label} style={[styles.labelStyle,]}>
+        {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
+      </Regular>
       <TouchableOpacity
         disabled={editable}
         onPress={() => {
           setVisible(true);
           onBlur();
         }}
-        style={[styles.dropDownContainer, containerStyle]}>
+        style={[styles.dropDownContainer]}>
         <Medium label={value} />
-        <AntDesign size={25} name={icon} color={colors.primary} />
+        <AntDesign size={20} name={icon} color={colors.primary} />
       </TouchableOpacity>
-      <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} />
+      {/* <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} /> */}
       <DropdownModal
         onClose={() => setVisible(false)}
         onChangeText={onChangeText}
@@ -206,7 +205,7 @@ export const InputWithIcon = (props: props) => {
         visible={visible}
         items={items}
       />
-    </>
+    </View>
   );
 };
 export const MulDropdownInput = (props: props) => {
@@ -232,18 +231,46 @@ export const MulDropdownInput = (props: props) => {
           {isRequired ? <Regular color={colors.red} label={' *'} /> : null}
         </Regular>
       )}
-      <TouchableOpacity
-        disabled={editable}
-        onPress={() => {
-          setVisible(true);
-          onBlur();
-        }}
-        style={[styles.dropDownContainer, containerStyle]}>
-        <Medium label={value} />
-        <AntDesign size={25}
-          name={icon}
-          color={colors.primary} />
-      </TouchableOpacity>
+      <View
+
+        style={[styles.multiDropDownContainer, containerStyle]}>
+        <ScrollView showsHorizontalScrollIndicator={false} horizontal>
+          {items?.filter(x => x?.selected)?.map((ele, index) => <Row
+            style={{
+              paddingHorizontal: mvs(10),
+              paddingVertical: mvs(5),
+              backgroundColor: colors.primary,
+              borderRadius: mvs(5),
+              alignItems: 'center',
+              marginRight: mvs(10),
+            }}>
+            <Medium label={ele?.title} color={colors.white} />
+            <TouchableOpacity
+              style={{ paddingLeft: mvs(5) }}
+              onPress={() => {
+                const copy = [...items];
+                ele.selected = !ele.selected;
+                copy[index] = ele;
+                onChangeText(copy);
+              }}>
+              <AntDesign size={15}
+                name={'closecircle'}
+                color={colors.white} />
+            </TouchableOpacity>
+          </Row>)}
+        </ScrollView>
+        <TouchableOpacity
+          style={{ paddingLeft: mvs(5) }}
+          disabled={editable}
+          onPress={() => {
+            setVisible(true);
+            onBlur();
+          }}>
+          <AntDesign size={20}
+            name={icon}
+            color={colors.primary} />
+        </TouchableOpacity>
+      </View>
       <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} />
       <MultiDropdownModal
         onClose={() => setVisible(false)}
@@ -391,7 +418,18 @@ const styles = StyleSheet.create({
     // borderWidth: mvs(0.7),
     height: mvs(50),
     alignItems: 'center',
-    marginBottom: mvs(10),
+    // marginBottom: mvs(10),
+    borderRadius: mvs(10),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: mvs(10),
+    backgroundColor: colors.secondary,
+  },
+  multiDropDownContainer: {
+    // borderWidth: mvs(0.7),
+    height: mvs(50),
+    alignItems: 'center',
+    // marginBottom: mvs(10),
     borderRadius: mvs(10),
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -443,7 +481,7 @@ const styles = StyleSheet.create({
     color: colors.red,
     // backgroundColor: 'red',
     fontSize: mvs(10),
-    marginBottom: mvs(5),
+    marginBottom: mvs(2),
     height: mvs(15),
     marginHorizontal: mvs(5),
   },

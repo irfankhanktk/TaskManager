@@ -4,7 +4,7 @@ import { ModalWrapper } from 'components/atoms/modal-wrapper'
 import { colors } from 'config/colors'
 import React from 'react'
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/AntDesign'
 import Medium from 'typography/medium-text'
 import { mvs } from '../../../config/metrices'
 import DoctorAvailabilityLocation from '../doctor-availability-location'
@@ -40,7 +40,7 @@ const MultiDropdownModal = (
                             }}
                             style={styles.button}>
                             <Medium label={item?.title} style={{ fontSize: mvs(16) }} />
-                            <Icon name={item?.selected ? 'radio-button-checked' : 'radio-button-unchecked'} size={mvs(20)} />
+                            <Icon name={item?.selected ? 'checkcircle' : 'checkcircleo'} size={mvs(20)} />
                         </TouchableOpacity>)
                     })}
                 </ScrollView>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         width: mvs(104),
         alignSelf: 'center',
         backgroundColor: colors.lightGray,
-        marginBottom: mvs(20)
+        marginBottom: mvs(10)
     },
     pick: {
         textAlign: 'center',
@@ -81,10 +81,12 @@ const styles = StyleSheet.create({
     },
     button: {
         paddingHorizontal: mvs(30),
-        marginBottom: mvs(20),
+        paddingVertical: mvs(10),
+        // marginBottom: mvs(10),
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderBottomWidth: 0.7,
+        borderColor: colors.border,
+        borderBottomWidth: StyleSheet.hairlineWidth,
     },
     cross: { padding: mvs(20), alignSelf: 'flex-end', position: 'absolute', }
 
