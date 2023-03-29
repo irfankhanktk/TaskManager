@@ -10,7 +10,7 @@ import { mvs } from '../../../config/metrices'
 import DoctorAvailabilityLocation from '../doctor-availability-location'
 import { EmptyList } from '../empty-list'
 
-const DropdownModal = (
+const MultiDropdownModal = (
     {
         style = {},
         value,
@@ -33,11 +33,14 @@ const DropdownModal = (
                         return (<TouchableOpacity
                             key={index}
                             onPress={() => {
-                                onChangeText(item?.id);
+                                const copy = [...items];
+                                item.selected = !item.selected;
+                                copy[index] = item;
+                                onChangeText(copy);
                             }}
                             style={styles.button}>
                             <Medium label={item?.title} style={{ fontSize: mvs(16) }} />
-                            <Icon name={item?.id === value ? 'radio-button-checked' : 'radio-button-unchecked'} size={mvs(20)} />
+                            <Icon name={item?.selected ? 'radio-button-checked' : 'radio-button-unchecked'} size={mvs(20)} />
                         </TouchableOpacity>)
                     })}
                 </ScrollView>
@@ -45,7 +48,7 @@ const DropdownModal = (
         </ModalWrapper>
     )
 }
-export default DropdownModal;
+export default MultiDropdownModal;
 const styles = StyleSheet.create({
     contentContainerStyle: {
         width: '100%',

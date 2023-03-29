@@ -38,7 +38,7 @@ export const DatePicker = (props: IProps) => {
     };
 
     const handleConfirm = (date: any) => {
-        onChangeText(moment(date).format(DATE_FORMAT.yyyy_mm_dd));
+        onChangeText(moment(date).format(mode === 'date' ? DATE_FORMAT.yyyy_mm_dd : DATE_FORMAT.hh_mm));
         hideDatePicker();
     };
     return (

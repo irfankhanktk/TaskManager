@@ -27,6 +27,7 @@ import { useAppSelector } from 'hooks/use-store';
 import CartModal from 'components/molecules/modals/department-modal';
 import DropdownModal from 'components/molecules/modals/dropdown-modal';
 import { t } from 'i18next';
+import MultiDropdownModal from 'components/molecules/modals/multi-dropdown-modal';
 type Item = { label: string; value: string };
 type props = {
   isRequired?: boolean;
@@ -208,7 +209,7 @@ export const InputWithIcon = (props: props) => {
     </>
   );
 };
-export const DropdownInput = (props: props) => {
+export const MulDropdownInput = (props: props) => {
   const [visible, setVisible] = React.useState(false);
   const {
     items = [],
@@ -239,10 +240,12 @@ export const DropdownInput = (props: props) => {
         }}
         style={[styles.dropDownContainer, containerStyle]}>
         <Medium label={value} />
-        <AntDesign size={25} name={icon} color={colors.primary} />
+        <AntDesign size={25}
+          name={icon}
+          color={colors.primary} />
       </TouchableOpacity>
       <Regular label={error ? `${t(error)}` : ''} style={styles.errorLabel} />
-      <DropdownModal
+      <MultiDropdownModal
         onClose={() => setVisible(false)}
         onChangeText={onChangeText}
         value={value}

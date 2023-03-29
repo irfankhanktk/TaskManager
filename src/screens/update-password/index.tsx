@@ -1,29 +1,25 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Header1x2x from 'components/atoms/headers/header-1x-2x';
-import {useFormik} from 'formik';
-import {t} from 'i18next';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
+import { useFormik } from 'formik';
+import { t } from 'i18next';
 import React from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
-import * as IMG from 'assets/images';
-import {onSignup, onUpdatePassword} from 'services/api/api-actions';
-import {signupFormValidation, updatePasswordValidation} from 'validations';
-import {PrimaryButton} from '../../components/atoms/buttons';
-import PrimaryInput from '../../components/atoms/inputs';
-import {KeyboardAvoidScrollview} from '../../components/atoms/keyboard-avoid-scrollview';
-import {useAppDispatch} from '../../hooks/use-store';
-import RootStackParamList from '../../types/navigation-types/root-stack';
-import Medium from '../../typography/medium-text';
-import styles from './styles';
-import {mvs} from 'config/metrices';
-import {colors} from 'config/colors';
+import { Image, TouchableOpacity, View } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {shadow} from 'react-native-paper';
-import {Clientlistavatar} from 'assets/icons';
-import {UTILS} from 'utils';
+import { onUpdatePassword } from 'services/api/api-actions';
+import { UTILS } from 'utils';
+import { updatePasswordValidation } from 'validations';
+import { PrimaryButton } from '../../components/atoms/buttons';
+import PrimaryInput from '../../components/atoms/inputs';
+import { KeyboardAvoidScrollview } from '../../components/atoms/keyboard-avoid-scrollview';
+import { useAppDispatch } from '../../hooks/use-store';
+import RootStackParamList from '../../types/navigation-types/root-stack';
+import styles from './styles';
 type props = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 
 const UpdatePassword = (props: props) => {
-  const {navigation} = props;
+  const { navigation } = props;
   const dispatch = useAppDispatch();
   const initialValues = {
     email: '',
@@ -32,13 +28,13 @@ const UpdatePassword = (props: props) => {
   };
   const [image, setImage] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-  const {values, errors, touched, setFieldValue, setFieldTouched, isValid} =
+  const { values, errors, touched, setFieldValue, setFieldTouched, isValid } =
     useFormik({
       initialValues: initialValues,
       validateOnBlur: true,
       validateOnChange: true,
       validationSchema: updatePasswordValidation,
-      onSubmit: () => {},
+      onSubmit: () => { },
     });
   return (
     <View style={styles.container}>
@@ -53,7 +49,7 @@ const UpdatePassword = (props: props) => {
           }}>
           <Image
             // source={IMG.cash}
-            source={{uri: image?.uri}}
+            source={{ uri: image?.uri }}
             resizeMode="contain"
             style={{
               width: mvs(140),

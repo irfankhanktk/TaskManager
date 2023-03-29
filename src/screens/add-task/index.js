@@ -1,26 +1,19 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { DatePicker } from 'components/atoms/date-picker';
 import Header1x2x from 'components/atoms/headers/header-1x-2x';
+import { colors } from 'config/colors';
+import { mvs } from 'config/metrices';
 import { useFormik } from 'formik';
 import { t } from 'i18next';
 import React from 'react';
-import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import * as IMG from 'assets/images';
-import { onSignup, onUpdatePassword } from 'services/api/api-actions';
-import { signupFormValidation, updatePasswordValidation } from 'validations';
+import { TouchableOpacity, View } from 'react-native';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { onUpdatePassword } from 'services/api/api-actions';
+import { updatePasswordValidation } from 'validations';
 import { PrimaryButton } from '../../components/atoms/buttons';
-import PrimaryInput, { DropdownInput, InputWithIcon } from '../../components/atoms/inputs';
+import PrimaryInput, { InputWithIcon, MulDropdownInput } from '../../components/atoms/inputs';
 import { KeyboardAvoidScrollview } from '../../components/atoms/keyboard-avoid-scrollview';
 import { useAppDispatch } from '../../hooks/use-store';
-import RootStackParamList from '../../types/navigation-types/root-stack';
-import Medium from '../../typography/medium-text';
 import styles from './styles';
-import { mvs } from 'config/metrices';
-import { colors } from 'config/colors';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import { shadow } from 'react-native-paper';
-import { Clientlistavatar } from 'assets/icons';
-import { UTILS } from 'utils';
-import DropdownModal from 'components/molecules/modals/dropdown-modal';
 
 
 const AddTask = (props) => {
@@ -34,6 +27,15 @@ const AddTask = (props) => {
   const [image, setImage] = React.useState('');
   const [ddDepartmentModal, setDdDepartmentModal] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [payload, setPayload] = React.useState({
+    despartment: '',
+    client: '',
+    managers: '',
+    tasks: '',
+    startDate: '',
+    endDate: '',
+    time: '',
+  });
   const [tasks, setTasks] = React.useState([{
     title: '',
     description: '',
@@ -41,6 +43,9 @@ const AddTask = (props) => {
   const [managers, setManagers] = React.useState([
     { id: 1, title: 'Irfan' },
     { id: 2, title: 'Khan' }]);
+  const clients = [
+    { id: 1, title: 'Irfan' },
+    { id: 2, title: 'Khan' }];
   const [selectedDepartment, setSelectedDepartment] = React.useState({});
   const { values, errors, touched, setFieldValue, setFieldTouched, isValid } =
     useFormik({
@@ -118,8 +123,53 @@ const AddTask = (props) => {
             />
           </TouchableOpacity>
         </View>
-        <DropdownInput
-          label='Select Manager' onChangeText={setManagers} items={managers} icon={'down'} />
+        <InputWithIcon
+          editable={true}
+          value={'khan'}
+          id={payload?.despartment}
+          label='Select Department'
+          onChangeText={(v) => setPayload({ ...payload, despartment: v })}
+          items={managers} icon={'down'} />
+        <MulDropdownInput
+          value={managers?.filter(x => x?.selected)?.map(x => x?.title)?.join()}
+          label='Select Manager'
+          onChangeText={setManagers}
+          items={managers} icon={'down'} />
+        <InputWithIcon
+          value={clients?.find(x => x?.id === payload?.client)?.title || ''}
+          id={payload?.client}
+          label='Select Clients'
+          onChangeText={(v) => setPayload({ ...payload, client: v })}
+          items={clients} icon={'down'} />
+        <DatePicker
+          onChangeText={(date) => setPayload({ ...payload, startDate: date })}>
+          <InputWithIcon
+            editable
+            value={payload?.startDate}
+            id={payload?.client}
+            label='Start Date'
+            onChangeText={(v) => { }}
+            items={[]} />
+        </DatePicker>
+        <DatePicker
+          onChangeText={(date) => setPayload({ ...payload, endDate: date })}>
+          <InputWithIcon
+            editable
+            value={payload?.endDate}
+            label='End Date'
+            onChangeText={(v) => { }}
+            items={[]} />
+        </DatePicker>
+        <DatePicker
+          mode='time'
+          onChangeText={(date) => setPayload({ ...payload, time: date })}>
+          <InputWithIcon
+            editable
+            value={payload?.time}
+            label='Task Time'
+            onChangeText={(v) => { }}
+            items={[]} />
+        </DatePicker>
         <PrimaryButton
           loading={loading}
           title={t('Update')}
