@@ -15,7 +15,10 @@ import Bold from 'typography/bold-text';
 import Medium from 'typography/medium-text';
 import Regular from 'typography/regular-text';
 import {mvs} from '../../config/metrices';
-import PrimaryInput from '../../components/atoms/inputs/index';
+import PrimaryInput, {
+  InputWithIcon,
+  MulDropdownInput,
+} from '../../components/atoms/inputs/index';
 
 import moment from 'moment';
 import Header1x2x from 'components/atoms/headers/header-1x-2x';
@@ -34,6 +37,19 @@ const EditUser = props => {
   const [selectedUser, setSelectedUser] = React.useState(
     props?.route?.params?.item || {},
   );
+  const [payload, setPayload] = React.useState({
+    despartment: '',
+    role: '',
+    managers: '',
+  });
+  const [managers, setManagers] = React.useState([
+    {id: 1, title: 'Irfan'},
+    {id: 2, title: 'Khan'},
+  ]);
+  const role = [
+    {id: 1, title: 'Irfan'},
+    {id: 2, title: 'Khan'},
+  ];
   console.log('selectedUser=>>>>', selectedUser);
   const onSave = async () => {
     try {
@@ -44,8 +60,8 @@ const EditUser = props => {
             username: selectedUser?.username,
             phone_number: selectedUser?.phone_number,
             cnic_no: selectedUser?.cnic_no,
-            dep_id: selectedUser?.dep_id,
-            is_admin: selectedUser?.is_admin,
+            // dep_id: selectedUser?.dep_id,
+            // is_admin: selectedUser?.is_admin,
             email: selectedUser?.email,
           })
         : await addUser({
@@ -82,6 +98,7 @@ const EditUser = props => {
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
+          backgroundColor: colors.white,
         }}>
         <View style={styles.container}>
           <PrimaryInput
@@ -145,6 +162,24 @@ const EditUser = props => {
               setSelectedUser({...selectedUser, cnic_no: str})
             }
             value={selectedUser?.cnic_no}
+          />
+          <InputWithIcon
+            value={role?.find(x => x?.id === payload?.role)?.title || ''}
+            id={payload?.role}
+            label="Select Role"
+            onChangeText={v => setPayload({...payload, role: v})}
+            items={role}
+            icon={'down'}
+          />
+          <MulDropdownInput
+            value={managers
+              ?.filter(x => x?.selected)
+              ?.map(x => x?.title)
+              ?.join()}
+            label="Select Manager"
+            onChangeText={setManagers}
+            items={managers}
+            icon={'down'}
           />
 
           <PrimaryButton

@@ -5,8 +5,8 @@ export const URLS = {
   auth: {
     login: 'auth/login',
 
-    update_password: 'doctor/updatePassword',
-    change_password: 'doctor/changePassword',
+    // update_password: 'doctor/updatePassword',
+    // change_password: 'doctor/changePassword',
     otp_verify: 'doctor/otpVerify',
     forget_password: 'doctor/forgetPassword',
     update_profile: 'doctor/updateProfile',
@@ -27,6 +27,9 @@ export const URLS = {
   add_user: 'auth/users/add-user',
   delete_user: 'auth/users/delete-user',
   update_user: 'auth/updateInfo',
+  get_user_info: 'auth/user',
+  update_user_data: 'auth/profile/update-user-data',
+  update_password: 'auth/profile/change-password',
 
   notification: {
     get_notification: 'doctor/getNotification',

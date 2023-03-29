@@ -72,6 +72,13 @@ export const updateTaskListFormValidation = yup.object().shape({
 
   task_type: yup.string().required('req_task_type'),
 });
+export const updateUserProfileFormValidation = yup.object().shape({
+  username: yup.string().required('req_username'),
+  // last_name: yup.string().required('req_first_name'),
+  phone_number: yup.string().required('req_phone_number'),
+
+  cnic_no: yup.string().required('req_cnic_no'),
+});
 // export const updateProfileFormValidation = yup.object().shape({
 //   first_name: yup.string().required('req_first_name'),
 //   // last_name: yup.string().required('req_first_name'),
@@ -86,9 +93,9 @@ export const updateTaskListFormValidation = yup.object().shape({
 // });
 export const updatePasswordValidation = yup.object().shape({
   email: yup.string().email('invalid_email').required('req_email'),
-  old_password: yup.string().required('req_pass').min(8, 'weak_pass'),
+  old_password: yup.string().required('req_pass').min(6, 'weak_pass'),
   new_password: yup
     .string()
     .required('New Password is required')
-    .min(8, 'New weak_pass'),
+    .min(6, 'New weak_pass'),
 });

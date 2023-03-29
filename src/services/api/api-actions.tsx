@@ -23,7 +23,7 @@ import {URLS} from './api-urls';
 // }
 export const onChangePassword = async (values: any) => {
   try {
-    const res = await postData(URLS.auth.change_password, values);
+    const res = await postData(URLS.update_password, values);
     console.log('res of onChangepassword=>', res);
     return res;
   } catch (error: any) {
@@ -99,6 +99,17 @@ export const getDepartmentList = async (values: any) => {
     throw UTILS.returnError(error);
   }
 };
+export const getUserDetails = async (values: any) => {
+  try {
+    const res = await getData(URLS.get_user_info, values);
+    console.log('res of userdetails data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in userdetails', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
 export const editDepartmentList = async (values: any) => {
   try {
     const res = await postData(URLS.update_department, values);
@@ -128,6 +139,17 @@ export const editUserList = async (values: any) => {
     return res;
   } catch (error: any) {
     console.log('error in edituser', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
+export const editUserData = async (values: any) => {
+  try {
+    const res = await postData(URLS.update_user_data, values);
+    console.log('res of edituserdata data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in edituserdata', UTILS.returnError(error));
     Alert.alert('', UTILS.returnError(error));
     throw UTILS.returnError(error);
   }

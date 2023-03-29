@@ -24,6 +24,8 @@ import TaskListDetails from 'screens/Tasks-list-details';
 import UpdatePassword from 'screens/update-password';
 import UpdateProfile from 'screens/update-profile';
 import UpdateTaskList from 'screens/update-Tasks-list- ';
+import UpdateUserProfile from 'screens/update-user-Profile';
+import UserInfo from 'screens/User-info';
 import UserList from 'screens/user-list-list ';
 import {horizontalAnimation} from '../utils';
 import DrawerNavigation from './drawer-navigation';
@@ -85,6 +87,8 @@ export const RootNavigator = () => {
         <Stack.Screen name="DepartmentList" component={DepartmentList} />
         <Stack.Screen name="EditClient" component={EditClient} />
         <Stack.Screen name="EditUser" component={EditUser} />
+        <Stack.Screen name="UserInfo" component={UserInfo} />
+        <Stack.Screen name="UpdateUserProfile" component={UpdateUserProfile} />
         {/* <Stack.Screen
           name="AppointmentDetails"
           component={AppointmentDetails}
