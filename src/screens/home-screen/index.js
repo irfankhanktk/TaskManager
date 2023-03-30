@@ -13,6 +13,8 @@ import React from 'react';
 import { ScrollView, View } from 'react-native';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import {
+  getClientList,
+  getDepartmentList,
   getTaskCounter
 } from 'services/api/api-actions';
 import i18n from 'translation';
@@ -33,12 +35,24 @@ const Home = props => {
       try {
         setLoading(true);
         const res = await getTaskCounter();
-        console.log('res of task counter ==>>>>>', res);
+        // console.log('res of task counter ==>>>>>', res);
         setTaskCounter(res);
       } catch (error) {
         console.log('error in=>', error);
       } finally {
         setLoading(false);
+      }
+    })();
+  }, [isFocus]);
+  //get all clients
+  React.useEffect(() => {
+    (async () => {
+      try {
+        dispatch(getDepartmentList());
+        dispatch(getClientList());
+        // console.log('res of task counter ==>>>>>', res);
+      } catch (error) {
+        console.log('error in=>', error);
       }
     })();
   }, [isFocus]);

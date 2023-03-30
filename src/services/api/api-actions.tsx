@@ -1,15 +1,17 @@
-import {STORAGEKEYS} from 'config/constants';
-import {goBack} from 'navigation/navigation-ref';
-import {Alert} from 'react-native';
-import {AppDispatch, RootState} from 'store';
-import {getData, postData} from '.';
+import { STORAGEKEYS } from 'config/constants';
+import { goBack } from 'navigation/navigation-ref';
+import { Alert } from 'react-native';
+import { AppDispatch, RootState } from 'store';
+import { setDepartmentList } from 'store/reducers/common-reducer';
+import { setClientList } from 'store/reducers/common-reducer';
+import { getData, postData } from '.';
 import {
   setNotifications,
   setUserInfo,
   setWallet,
 } from '../../store/reducers/user-reducer';
-import {UTILS} from '../../utils';
-import {URLS} from './api-urls';
+import { UTILS } from '../../utils';
+import { URLS } from './api-urls';
 
 // export const getNearByHospitals = async (lat: any, long: any) => {
 //     try {
@@ -55,15 +57,18 @@ export const getUserList = async () => {
     throw UTILS.returnError(error);
   }
 };
-export const getClientList = async () => {
-  try {
-    const res = await getData(URLS.get_clients);
-    console.log('res of getclients=>', res);
-    return res;
-  } catch (error: any) {
-    console.log('error in getclients', UTILS.returnError(error));
-    Alert.alert('', UTILS.returnError(error));
-    throw UTILS.returnError(error);
+export const getClientList = () => {
+  return async (dispatch: AppDispatch, getState: () => RootState) => {
+    try {
+      const res = await getData(URLS.get_clients);
+      // console.log('res of getclients=>', res);
+      dispatch(setClientList(res?.allClients));
+      // return res;
+    } catch (error: any) {
+      console.log('error in getclients', UTILS.returnError(error));
+      Alert.alert('', UTILS.returnError(error));
+      // throw UTILS.returnError(error);
+    }
   }
 };
 export const getTaskCounter = async () => {
@@ -88,15 +93,19 @@ export const getTaskList = async (values: any) => {
     throw UTILS.returnError(error);
   }
 };
-export const getDepartmentList = async (values: any) => {
-  try {
-    const res = await getData(URLS.get_department_list, values);
-    console.log('res of departmentslist data=>', res);
-    return res;
-  } catch (error: any) {
-    console.log('error in departmenstlist', UTILS.returnError(error));
-    Alert.alert('', UTILS.returnError(error));
-    throw UTILS.returnError(error);
+export const getDepartmentList = () => {
+  return async (dispatch: AppDispatch, getState: () => RootState) => {
+
+    try {
+      const res = await getData(URLS.get_department_list);
+      console.log('res of departmentslist data=>', res);
+      dispatch(setDepartmentList(res?.allDepartments));
+      // return res;
+    } catch (error: any) {
+      console.log('error in departmenstlist', UTILS.returnError(error));
+      Alert.alert('', UTILS.returnError(error));
+      // throw UTILS.returnError(error);
+    }
   }
 };
 export const getUserDetails = async () => {
@@ -266,22 +275,22 @@ export const getNotifications = (
 // };
 
 /// Wallet ///
-export const getWallet = (values: any, setLoading: (bool: boolean) => void) => {
-  return async (dispatch: AppDispatch, getState: () => RootState) => {
-    try {
-      setLoading(true);
-      const res = await postData(URLS.wallet.get_wallet, values);
+// export const getWallet = (values: any, setLoading: (bool: boolean) => void) => {
+//   return async (dispatch: AppDispatch, getState: () => RootState) => {
+//     try {
+//       setLoading(true);
+//       const res = await postData(URLS.wallet.get_wallet, values);
 
-      dispatch(setWallet(res || {}));
-      console.log('res of wallet=>', res);
-    } catch (error: any) {
-      console.log('error in wallet', UTILS.returnError(error));
-      Alert.alert('', UTILS.returnError(error));
-    } finally {
-      setLoading(false);
-    }
-  };
-};
+//       dispatch(setWallet(res || {}));
+//       console.log('res of wallet=>', res);
+//     } catch (error: any) {
+//       console.log('error in wallet', UTILS.returnError(error));
+//       Alert.alert('', UTILS.returnError(error));
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+// };
 
 //// add amount///
 export const onAddAmount = async (values: any) => {
