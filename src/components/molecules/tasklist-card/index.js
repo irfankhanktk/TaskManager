@@ -17,26 +17,41 @@ import * as IMG from 'assets/images';
 import {Chart} from 'assets/icons';
 import LottieView from 'lottie-react-native';
 import Bold from 'typography/bold-text';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 const ClientListCard = ({
   item,
 
   style,
   onPress = () => {},
+  onPressEdit = () => {},
+  onPressDelete = () => {},
 
   children,
 }) => {
   const {t} = i18n;
   return (
-    <TouchableOpacity style={styles.container}>
-      <Bold
-        label={item.s_task_name}
-        fontSize={mvs(16)}
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Row
         style={{
           borderBottomWidth: 1,
           borderBottomColor: colors.lightGray,
           paddingBottom: mvs(5),
-        }}
-      />
+        }}>
+        <Bold label={item.s_task_name} fontSize={mvs(16)} />
+        <Row>
+          <TouchableOpacity style={{marginRight: mvs(8)}} onPress={onPressEdit}>
+            <FontAwesome name="edit" size={mvs(20)} color={colors.primary} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={onPressDelete}>
+            <MaterialCommunityIcons
+              name="delete"
+              size={mvs(20)}
+              color={colors.red}
+            />
+          </TouchableOpacity>
+        </Row>
+      </Row>
       <View style={{paddingVertical: mvs(5)}}>
         <Row style={{paddingBottom: mvs(5)}}>
           <Regular
@@ -75,11 +90,13 @@ const ClientListCard = ({
           />
           <Regular
             // label={item.progress}
-             label={item.progress === 100
-              ? 'Completed'
-              : item.progress === 50
-              ? 'In progress'
-              : 'Not Started'}
+            label={
+              item.progress === 100
+                ? 'Completed'
+                : item.progress === 50
+                ? 'In progress'
+                : 'Not Started'
+            }
             fontSize={mvs(13)}
             color={colors.lightblack}
             style={{flex: 1}}
