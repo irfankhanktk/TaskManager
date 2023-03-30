@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userSlice from './reducers/user-reducer'
-import docSlice from './reducers/doctor-reducer'
+import commonSlice from './reducers/common-reducer'
 
 export const store = configureStore({
   reducer: {
-    doctor: docSlice,
+    common: commonSlice,
     user: userSlice,
-
   },
   // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

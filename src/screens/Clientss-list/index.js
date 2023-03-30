@@ -1,16 +1,17 @@
-import {useIsFocused} from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 import Header1x2x from 'components/atoms/clientslistheader/header-1x-2x';
 // import AppointmentCard from 'components/molecules/dashboard-card';
-import {SearchInput} from 'components/atoms/inputs';
-import {Loader} from 'components/atoms/loader';
+import { SearchInput } from 'components/atoms/inputs';
+import { Loader } from 'components/atoms/loader';
 import ClientlistCard from 'components/molecules/Clientlist-card';
-import {EmptyList} from 'components/molecules/empty-list';
+import { EmptyList } from 'components/molecules/empty-list';
 import ClientDetailsModal from 'components/molecules/modals/client-details';
 import EditClientModal from 'components/molecules/modals/edit-client-modal';
-import {mvs} from 'config/metrices';
-import {navigate} from 'navigation/navigation-ref';
+import { mvs } from 'config/metrices';
+import { useAppDispatch, useAppSelector } from 'hooks/use-store';
+import { navigate } from 'navigation/navigation-ref';
 import React from 'react';
-import {Alert, FlatList, View} from 'react-native';
+import { Alert, FlatList, View } from 'react-native';
 import {
   addClient,
   deleteClient,
@@ -22,25 +23,22 @@ import {
 import styles from './styles';
 
 const ClientList = props => {
-  const [loading, setLoading] = React.useState(true);
-
-  const [clientList, setClientList] = React.useState([]);
+  const { common } = useAppSelector(s => s);
+  const { clientList } = common;
+  const [loading, setLoading] = React.useState(false);
   const [searchTerm, setSearchTerm] = React.useState('');
   const [searchList, setSearchList] = React.useState([]);
 
   const [selectedClient, setSelectedClient] = React.useState({});
   const [showClient, setShowClient] = React.useState(false);
   const isFocus = useIsFocused();
+  const dispatch = useAppDispatch();
+
   const getClients = async () => {
     try {
-      // setLoading(true);
-      const res = await getClientList();
-      // console.log('res of userlist ==>>>>>', res);
-      setClientList(res?.allClients || []);
+      dispatch(getClientList());
     } catch (error) {
       console.log('error=>', error);
-    } finally {
-      setLoading(false);
     }
   };
   React.useEffect(() => {
@@ -107,7 +105,7 @@ const ClientList = props => {
         onPress: async () => {
           try {
             setLoading(true);
-            const res = await deleteClient({id: id});
+            const res = await deleteClient({ id: id });
             Alert.alert('Success', 'Client Deleted Successfully');
 
             await getClients();
@@ -130,7 +128,7 @@ const ClientList = props => {
         }}
       />
       <SearchInput
-        containerStyle={{marginHorizontal: mvs(20)}}
+        containerStyle={{ marginHorizontal: mvs(20) }}
         onChangeText={setSearchTerm}
       />
 
@@ -142,7 +140,7 @@ const ClientList = props => {
             ListEmptyComponent={<EmptyList label={'no_result'} />}
             data={searchTerm?.trim()?.length ? searchList : clientList}
             contentContainerStyle={styles.contentContainerStyle}
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
               return (
                 <ClientlistCard
                   onPress={() => {
@@ -150,7 +148,7 @@ const ClientList = props => {
                     setSelectedClient(item);
                   }}
                   onPressEdit={() => {
-                    navigate('EditClient', {item: item});
+                    navigate('EditClient', { item: item });
                     // setShowClientDetails(true);
                     // setSelectedClient(item);
                   }}
@@ -160,7 +158,7 @@ const ClientList = props => {
               );
             }}
             keyExtractor={(item, index) => index.toString()}
-            // columnWrapperStyle={{justifyContent: 'space-between'}}
+          // columnWrapperStyle={{justifyContent: 'space-between'}}
           />
         )}
       </View>
