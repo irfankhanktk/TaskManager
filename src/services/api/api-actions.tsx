@@ -220,6 +220,17 @@ export const deleteUser = async (values: any) => {
     throw UTILS.returnError(error);
   }
 };
+export const deleteTask = async (values: any) => {
+  try {
+    const res = await postData(URLS.delete_task, values);
+    console.log('res of deletetask data=>', res);
+    return res;
+  } catch (error: any) {
+    console.log('error in deletetask', UTILS.returnError(error));
+    Alert.alert('', UTILS.returnError(error));
+    throw UTILS.returnError(error);
+  }
+};
 ///Notifications///
 export const getNotifications = (
   values: any,

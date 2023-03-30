@@ -30,6 +30,7 @@ export const URLS = {
   get_user_info: 'auth/user',
   update_user_data: 'auth/profile/update-user-data',
   update_password: 'auth/profile/change-password',
+  delete_task: 'auth/tasks/delete-task',
 
   notification: {
     get_notification: 'doctor/getNotification',
