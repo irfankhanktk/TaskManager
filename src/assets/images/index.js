@@ -13,6 +13,7 @@ export {default as drawericon} from './menuTM.png';
 export {default as notificationicon} from './notificationTM.png';
 export {default as charticon} from './tomorrowtaskchartTM.png';
 export {default as taskgif} from './87889-clock-checklist.json';
+export {default as noDatagif} from './noData.json';
 /////Drawer Tab Images ////
 
 export {default as dashboard} from './dashboard.png';
